@@ -61,12 +61,15 @@ Open the `server` and `client` in separate VSCode workspaces or open the combine
 
 ### Purpose
 
-2-5 sentences describing what the system does
+The purpose of the system is to store and manage login information for its users through a user friendly interface. Each user will need to provide their individual master login to access the system and everytime the user wants to access their password they will need to enter a locally stored pincode.
+
+The main problem the system will strive to solve is to track your passwords making it easier to gain access to them. The system will store the content and data locally to ensure no leakage to the internet(like how draw.io uses tools online while having the option to store the data locally).
 
 ### Pages
 
-* Home: 1-3 sentences describing what the page displays and what a user can do
-* Shopping cart: ...
+* Main menu - Once logged in, the user will be able to see each account login as an individual entry in the system. Users can freely create, read, update, or delete entries at their own discretion.
+* Entry pop up - Each entry can contain varying types of information in varying amounts (one website might require you to input your username rather than your email address and another might require 3 credentials (i.e username, password, and pincode) rather than the typical 2, ). Every entry will also require an associated url for sorting purposes.
+* Categories/Sorting Folders - Entries will be sorted based on the associated website/service as well as categories the user can add (similar to category search in online stores). This can also be thought of as folders (E.g. one folder named “mail” for gmail or yahoo type of accounts and another folder named “shopping” for amazon & ebay).
 
 ### Entity-Relationship (ER) Diagram
 
