@@ -61,15 +61,28 @@ Open the `server` and `client` in separate VSCode workspaces or open the combine
 
 ### Purpose
 
-The purpose of the system is to store and manage login information for its users through a user friendly interface. Each user will need to provide their individual master login to access the system and everytime the user wants to access their password they will need to enter a locally stored pincode.
+Are you preparing for a medical exam and keep forgetting terminologies 📚? Do you have the urge to learn a new language 🧏, geography 🗺️ or even super loooong boring poems 📜 to sound "Culivated" 🤔? Do you want to improve your memory capacity or are you simply curious about how much information your brain could store? this tool is our gift to you 😌!! (thank us later ! 😜 )
 
-The main problem the system will strive to solve is to track your passwords making it easier to gain access to them. The system will store the content and data locally to ensure no leakage to the internet(like how draw.io uses tools online while having the option to store the data locally).
+Studies has shown that rehearsing information is the best way to ensure that you will remember it, researchers have found that being tested on information is actually one of the best ways to improve recall and expand the memory capacity of the brain. Therefore, our solution is to create a platform for the improvement memory seekers to create an unlimited number of folders (collections) where they can create their custumised notes or flashcards in order to view them frequently.
+
+
 
 ### Pages
 
-* Main menu - Once logged in, the user will be able to see each account login as an individual entry in the system. Users can freely create, read, update, or delete entries at their own discretion.
-* Entry pop up - Each entry can contain varying types of information in varying amounts (one website might require you to input your username rather than your email address and another might require 3 credentials (i.e username, password, and pincode) rather than the typical 2, ). Every entry will also require an associated url for sorting purposes.
-* Categories/Sorting Folders - Entries will be sorted based on the associated website/service as well as categories the user can add (similar to category search in online stores). This can also be thought of as folders (E.g. one folder named “mail” for gmail or yahoo type of accounts and another folder named “shopping” for amazon & ebay).
+* Login page: Once on the website a login is requiered, e.i email address and a password, if the user already has a registerd account. Otherwise, a link to create a new account will be visible and redirects the user to create a new account page.
+* Create new account page: The user fills the form with: a name, an email address, a password, apassword confirmation (test password match) and can submit the form by clicking on the submition button (register).
+
+* Collections page - Once logged in, the user will be able to view menu of all the collections(folders), if already exist, the user can then freely update, add or delete a collection.
+
+* Specific collection page: Once the user chooses a collection the flashcards will appear as a list in a miniature form. Once the user clicks on the start buttond, the digital flachcards will start showing up one by one on the users pace. The flashcard/note displays a writing such as a word or a sentence, or an image. The card is created by the user, so it will display whatever the user chose to view and in any language. The card also could display an optional field "hint". Once the user taps on the digital card, the card flips and displays the answer. The user could jump to the next card by clicking on "next".On the collection, The user can also make changes on a specific note, delete or add a new note.
+
+Once the answer is displayed, the user will manually click on correct or not correct symbols or butons if she/he could respectively answer or not answer This information will be stored in the database for satistics purpose that will be revealed later.
+
+The user will have the option either to go through the cards in the order or randomly. Moreover, the user can choose to only go through the card on which he/she spend more time to answer.
+
+* Statistics page: The user will be able to track the improvement of how much time spent on the collection and a tip of how often the user should go through the collection to reach the ideal estimated time calculated by the system.
+
+* Account page: The user can update information, change the password or delete the account.
 
 ### Entity-Relationship (ER) Diagram
 
