@@ -4,8 +4,8 @@ var morgan = require('morgan');
 var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
-const flashcard = require("./models/flashcard");
-const flashcardCollection = require("./models/flashcardCollection");
+var flashcardsController = require('./controllers/flashcards');
+var flashcardCollectionsController = require('./controllers/flashcardCollections');
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://gusschauma:p455w0rd@cluster0.jnai9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
@@ -33,96 +33,12 @@ app.options('*', cors());
 app.use(cors());
 
 // Import routes
-//POST------------------------------------------------------------
-app.post('/api/flashcards', async function(req, res){
-    var new_flashcard = await new flashcard(req.body);
-    new_flashcard.save(function (err){
-        if(err) return console.log(err);
-        console.log("Saved!");
-    });
-    res.json(new_flashcard);
-});
-
-app.post('/api/flashcardCollections', function(req, res){
-    var new_flashcardCollection = new flashcardCollection(req.body);
-    new_flashcardCollection.save(function (err){
-        if(err) return console.log(err);
-        console.log("Saved!");
-    });
-    res.json(new_flashcardCollection);
-});
-//GET--------------------------------------------------------------
 app.get('/api', function(req, res) {
     res.json({'message': 'Welcome to OUR DIT341 backend ExpressJS project!'});
 });
 
-app.get('/api/flashcards', async function(req, res) {
-    var fcs = await flashcard.find({});
-    res.json(fcs);
-});
-
-app.get('/api/flashcards/:id', async function(req, res) {
-    var fc = await flashcard.findById(req.body._id);
-    res.json(fc);
-});
-
-app.get('/api/flashcardCollections', async function(req, res) {
-    var fccs = await flashcardCollection.find({});
-    res.json(fccs);
-});
-
-app.get('/api/flashcardCollections/:id', async function(req, res) {
-    var fcc = await flashcardCollection.findById(req.body._id);
-    res.json(fcc);
-});
-//DELETE-----------------------------------------------------------
-/*app.delete('/api/camels', function(req, res) {  //BULK DELETE
-    delete camels;
-    res.json(camels);
-});*/
-
-app.delete('/api/flashcards/:id', async function(req, res) {
-    var fc = await flashcard.findByIdAndDelete(req.body._id);
-    res.json(fc);
-});
-
-app.delete('/api/flashcardCollections/:id', async function(req, res) {
-    var fcc = await flashcardCollection.findByIdAndDelete(req.body._id);
-    res.json(fcc);
-});
-//PUT--------------------------------------------------------------
-app.put('/api/flashcards/:id', async function(req, res) {
-    var fc = await flashcard.findByIdAndUpdate(req.body._id, {'question': req.body.question, 'answer': req.body.answer}, function(err) {
-        if(err) 
-        return console.log(err);
-        else
-        return console.log("Updated!");
-    });
-    res.json(fc);
-});
-
-app.put('/api/flashcardCollections/:id', async function(req, res) {
-    var fcc = await flashcardCollection.findByIdAndUpdate(req.body._id, {'subject': req.body.subject}, function(err) {
-        if(err) 
-        return console.log(err);
-        else
-        return console.log("Updated!");
-    });
-    res.json(fcc);
-});
-
-//PATCH-------------------------------------------------------------
-app.patch('/api/flashcards/:id', async function(req, res) {
-    var id =  await flashcardCollection.findByIdAndUpdate(req.body._id);
-    var flashcard = flashcards[id];
-    var updated_flashcard = {
-        "_id": id,
-        "question": (req.body.question || flashcard.question),
-        "answer": (req.body.answer || flashcard.answer)
-    };
-    flashcards[id] = updated_flashcard;
-    res.json(updated_flashcard);
-});
+app.use(flashcardsController);
+app.use(flashcardCollectionsController);
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {

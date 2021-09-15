@@ -1,0 +1,53 @@
+var express = require('express');
+var router = express.Router();
+const flashcardCollections = require("../models/flashcardCollections");
+
+router.post('/api/flashcardCollections', function(req, res){
+    var new_flashcardCollection = new flashcardCollections(req.body);
+    new_flashcardCollection.save(function (err){
+        if(err) return console.log(err);
+        console.log("Saved!");
+    });
+    res.json(new_flashcardCollection);
+});
+
+router.get('/api/flashcardCollections', async function(req, res) {
+    var fccs = await flashcardCollections.find({});
+    res.json(fccs);
+});
+
+router.get('/api/flashcardCollections/:id', async function(req, res) {
+    var fcc = await flashcardCollections.findById(req.params.id);
+    res.json(fcc);
+});
+
+router.delete('/api/flashcardCollections/:id', async function(req, res) {
+    var fcc = await flashcardCollections.findByIdAndDelete(req.params.id);
+    res.json(fcc);
+});
+
+router.put('/api/flashcardCollections/:id', async function(req, res) {
+    var fcc = await flashcardCollections.findByIdAndUpdate(req.params.id, {'subject': req.body.subject}, function(err) {
+        if(err) 
+        return console.log(err);
+        else
+        return console.log("Updated!");
+    });
+    res.json(fcc);
+});
+
+router.patch('/api/flashcardCollections/:id', async function(req, res) {
+    var fc = await flashcards.findById(req.params.id);
+    
+    fc.subject = req.body.subject || fc.subject;
+    
+    await fc.save(function(err) {
+        if(err) 
+        return console.log(err);
+        else
+        return console.log("Updated!");
+    });
+    res.json(fc);
+});
+
+module.exports = router;

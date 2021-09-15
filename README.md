@@ -69,24 +69,25 @@ Studies has shown that rehearsing information is the best way to ensure that you
 
 ### Pages
 
-* Login page: Once on the website a login is requiered, e.i email address and a password, if the user already has a registerd account. Otherwise, a link to create a new account will be visible and redirects the user to create a new account page.
-* Create new account page: The user fills the form with: a name, an email address, a password, apassword confirmation (test password match) and can submit the form by clicking on the submition button (register).
+* Login page: Once on the website a login is required, i.e email address and a password, if the user already has a registered account. Otherwise, a link to create a new account will be visible and redirects the user to create a new account page.
+* Create new account page: The user fills the form with; a name, an email address, a password, password confirmation (test password match) and can submit the form by clicking on the submission button (register).
 
-* Collections page - Once logged in, the user will be able to view menu of all the collections(folders), if already exist, the user can then freely update, add or delete a collection.
+* Collections page - Once logged in, the user will be able to view menu of all the collections(folders), if already exist, the user can then freely update, add, or delete a collection.
 
-* Specific collection page: Once the user chooses a collection the flashcards will appear as a list in a miniature form. Once the user clicks on the start buttond, the digital flachcards will start showing up one by one on the users pace. The flashcard/note displays a writing such as a word or a sentence, or an image. The card is created by the user, so it will display whatever the user chose to view and in any language. The card also could display an optional field "hint". Once the user taps on the digital card, the card flips and displays the answer. The user could jump to the next card by clicking on "next".On the collection, The user can also make changes on a specific note, delete or add a new note.
+* Specific collection page: Once the user chooses a collection the flashcards will appear as a list in a miniature form. Once the user clicks on the start button, the digital flashcards will start showing up one by one on the user’s pace. The flashcard/note displays a writing such as a word or a sentence, or an image. The card is created by the user, so it will display whatever the user chose to view and in any language. The card also could display an optional field "hint". Once the user taps on the digital card, the card flips and displays the answer. The user could jump to the next card by clicking on "next”. On the collection, the user can also make changes on a specific note, delete, or add a new note.
 
-Once the answer is displayed, the user will manually click on correct or not correct symbols or butons if she/he could respectively answer or not answer This information will be stored in the database for satistics purpose that will be revealed later.
+Once the answer is displayed, the user will manually click on correct or not correct symbols or buttons if she/he could respectively answer or not answer This information will be stored in the database for statistics purpose that will be revealed later.
 
 The user will have the option either to go through the cards in the order or randomly. Moreover, the user can choose to only go through the card on which he/she spend more time to answer.
 
 * Statistics page: The user will be able to track the improvement of how much time spent on the collection and a tip of how often the user should go through the collection to reach the ideal estimated time calculated by the system.
 
-* Account page: The user can update information, change the password or delete the account.
+* Account page: The user can update information, change the password, or delete the account.
+
 
 ### Entity-Relationship (ER) Diagram
 
-![ER Diagram](images/MEMORIZE_-_ER_DIAGRAM.drawio.png)
+![ER Diagram](images/er_diagram.png)
 
 ## Teaser (MS3)
 
