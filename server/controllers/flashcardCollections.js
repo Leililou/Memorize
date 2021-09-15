@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const flashcardCollections = require("../models/flashcardCollections");
+const flashcards = require('../models/flashcards');
 
 router.post('/api/flashcardCollections', function(req, res){
     var new_flashcardCollection = new flashcardCollections(req.body);
@@ -50,4 +51,16 @@ router.patch('/api/flashcardCollections/:id', async function(req, res) {
     res.json(fc);
 });
 
+/*router.post('/api/flashcardCollections/:fcc_id/:flashcard_id', async function(req, res){
+    var fcc = await flashcardCollections.findById(req.params.fcc_id);
+    var fc = await flashcards.findById(req.params.flashcard_id);
+    var flashcardCollections = fc.flashcardCollections;
+    var flashcards = fcc.flashcards;
+
+    if(flashcardCollections.includes(fc.id) === false) { flashcardCollections.push(fc.id); }
+
+    if(flashcards.includes(fcc.id) === false) { flashcards.push(fcc.id); }
+    
+    res.json(fc, fcc);
+});*/
 module.exports = router;
