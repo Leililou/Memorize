@@ -86,7 +86,7 @@ The user will have the option either to go through the cards in the order or ran
 
 ### Entity-Relationship (ER) Diagram
 
-![ER Diagram](images/MEMORIZE_-_ER_DIAGRAM.drawio.png)
+![ER Diagram](images/er_diagram.png)
 
 ## Teaser (MS3)
 
