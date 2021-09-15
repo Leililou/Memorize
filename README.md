@@ -63,7 +63,7 @@ Open the `server` and `client` in separate VSCode workspaces or open the combine
 
 Are you preparing for a medical exam and keep forgetting terminologies 📚? Do you have the urge to learn a new language 🧏, geography 🗺️ or even super loooong boring poems 📜 to sound "Culivated" 🤔? Do you want to improve your memory capacity or are you simply curious about how much information your brain could store? this tool is our gift to you 😌!! (thank us later ! 😜 )
 
-Studies has shown that rehearsing information is the best way to ensure that you will remember it, researchers have found that being tested on information is actually one of the best ways to improve recall and expand the memory capacity of the brain. Therefore, our solution is to create a platform for the improvement memory seekers to create an unlimited number of folders (collections) where they can create their custumised notes or flashcards in order to view them frequently.
+Studies has shown that rehearsing information is the best way to ensure that you will remember it, researchers have found that being tested on information is one of the best ways to improve recall and expand the memory capacity of the brain. Therefore, our solution is to create a platform for the improvement memory seekers to create an unlimited number of folders (collections) where they can create their customized notes or flashcards in order to view them frequently.
 
 
 
