@@ -1,4 +1,5 @@
 var express = require('express');
+const flashcards = require('../models/flashcards');
 var router = express.Router();
 const users = require("../models/users");
 
@@ -51,4 +52,13 @@ router.patch('/api/users/:id', async function(req, res) {
     res.json(fc);
 });
 
+router.get('/api/users/:user_id/flashcards', async function(req, res, next){
+    var user_id = req.params.user_id;
+    users.findById(user_id)
+    .populate("ownedFlashcards")
+    .exec(function(err, user) {
+        if(err) return next(err);
+        res.json(user.ownedFlashcards);
+    })
+});
 module.exports = router;

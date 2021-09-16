@@ -3,6 +3,7 @@ var router = express.Router();
 const mongoose = require('mongoose');
 const flashcards = require("../models/flashcards");
 const flashcardCollections = require("../models/flashcardCollections");
+const users = require("../models/users");
 
 router.post('/api/flashcards', async function(req, res){
     var new_flashcard = new flashcards(req.body);
@@ -54,16 +55,24 @@ router.patch('/api/flashcards/:id', async function(req, res) {
     res.json(fc);
 });
 
-/*router.post('/api/flashcards/:fc_id/:flashcardCollections_id', async function(req, res){
-    var fcc = await flashcardCollections.findById(req.params.flashcardCollections_id);
-    var fc = await flashcards.findById(req.params.fc_id);
-    var flashcardCollections = fc.flashcardCollections;
-    var flashcards = fcc.flashcards;
+router.post('/api/users/:user_id/flashcards', async function(req, res, next){
+    var user_id = req.params.user_id;
+    var new_flashcard = new flashcards(req.body);
+    new_flashcard.createdBy = user_id;
     
-    if(flashcardCollections.includes(fc.id) === false) { flashcardCollections.push(fc.id); }
+    new_flashcard.save(function (err){
+        if(err) return next(err);
+        res.json(new_flashcard);
+        console.log("Saved!");
+    });
 
-    if(flashcards.includes(fcc.id) === false) { flashcards.push(fcc.id); }
-    
-    res.json(fc, fcc);
-});*/
+    /*var user = await users.findById(user_id);
+    user.ownedFlashcards.push(new_flashcard.id);
+    await user.save(function(err) {
+        if(err) 
+        return console.log(err);
+        else
+        return console.log("Updated!");
+    });*/
+});
 module.exports = router;

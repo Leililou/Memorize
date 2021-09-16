@@ -6,4 +6,4 @@ var flashcardCollectionSchema = new Schema({
     flashcards: [{type: mongoose.Types.ObjectId, ref: 'Flashcards'}]
 });
 
-module.exports = mongoose.model('flashcardCollections', flashcardCollectionSchema);
+module.exports = mongoose.model('FlashcardCollections', flashcardCollectionSchema);
