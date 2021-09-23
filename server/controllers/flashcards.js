@@ -5,54 +5,12 @@ const flashcards = require("../models/flashcards");
 const flashcardCollections = require("../models/flashcardCollections");
 const users = require("../models/users");
 
-router.post('/api/flashcards', async function(req, res){
+router.post('/api/flashcards', async function(req, res, next){
     var new_flashcard = new flashcards(req.body);
     new_flashcard.save(function (err){
-        if(err) return console.log(err);
-        console.log("Saved!");
+        if(err) return next(err);
     });
-    res.json(new_flashcard);
-});
-
-router.get('/api/flashcards', async function(req, res) {
-    var fcs = await flashcards.find({});
-    res.json(fcs);
-});
-
-router.get('/api/flashcards/:id', async function(req, res) {
-    var fc = await flashcards.findById(req.params.id);
-    res.json(fc);
-});
-
-router.delete('/api/flashcards/:id', async function(req, res) {
-    var fc = await flashcards.findByIdAndDelete(req.params.id);
-    res.json(fc);
-});
-
-router.put('/api/flashcards/:id', async function(req, res) {
-    var fc = await flashcards.findByIdAndUpdate(req.params.id, {'question': req.body.question, 'answer': req.body.answer, 'hint': req.body.hint}, function(err) {
-        if(err) 
-        return console.log(err);
-        else
-        return console.log("Updated!");
-    });
-    res.json(fc);
-});
-
-router.patch('/api/flashcards/:id', async function(req, res) {
-    var fc = await flashcards.findById(req.params.id);
-
-    fc.question = req.body.question || fc.question;
-    fc.answer = req.body.answer || fc.answer;
-    fc.hint = req.body.hint || fc.hint;
-
-    await fc.save(function(err) {
-        if(err) 
-        return console.log(err);
-        else
-        return console.log("Updated!");
-    });
-    res.json(fc);
+    res.status(201).json(new_flashcard);
 });
 
 router.post('/api/users/:user_id/flashcards', async function(req, res, next){
@@ -62,17 +20,71 @@ router.post('/api/users/:user_id/flashcards', async function(req, res, next){
     
     new_flashcard.save(function (err){
         if(err) return next(err);
-        res.json(new_flashcard);
-        console.log("Saved!");
+    });
+    res.status(201).json(new_flashcard);
+});
+
+router.get('/api/flashcards', async function(req, res, next) {
+    var fcs = await flashcards.find({}, function(err) {
+        if(err) return next(err);
+
+        else if(fcs.length == 0) return res.status(404).json("No flashcards found");
+    });
+    res.status(200).json(fcs);
+});
+
+router.get('/api/flashcards/:id', async function(req, res, next) {
+    var fc = await flashcards.findById(req.params.id, function(err) {
+        if(err) return next(err);
+
+        else if(fc == null) return res.status(404).json("Flashcard not found");
+    });
+    res.status(200).json(fc);
+});
+
+router.put('/api/flashcards/:id', async function(req, res, next) {
+    var fc = await flashcards.findByIdAndUpdate(req.params.id, {'question': req.body.question, 'answer': req.body.answer, 'hint': req.body.hint}, function(err) {
+        if(err) return next(err);
+
+        else if(fc == null) res.status(404).json("Flashcard not found");
+    });
+    res.status(200).json(fc);
+});
+
+router.delete('/api/flashcards/:id', async function(req, res, next) {
+    var fc = await flashcards.findByIdAndDelete(req.params.id, function(err) {
+        if(err) return next(err)
+
+        else if(fc == null) return res.status(404).json("Flashcard not found")
+    });
+    res.status(200).json(fc);
+});
+
+router.delete('/api/flashcards', async function(req, res, next) {
+    var fcs = await flashcards.deleteMany({}, function (err) {
+        if(err) return next(err);
+
+        else if(fcs.length == 0) return res.status(404).json("No flashcards to delete")
+
+        res.status(200).json(fcs);
+    });
+})
+
+router.patch('/api/flashcards/:id', async function(req, res, next) {
+    var fc = await flashcards.findById(req.params.id, function(err) {
+        if(err) return next(err);
+
+        else if(fc == null) return res.status(404).json("Flashcard not found");
     });
 
-    /*var user = await users.findById(user_id);
-    user.ownedFlashcards.push(new_flashcard.id);
-    await user.save(function(err) {
-        if(err) 
-        return console.log(err);
-        else
-        return console.log("Updated!");
-    });*/
+    fc.question = req.body.question || fc.question;
+    fc.answer = req.body.answer || fc.answer;
+    fc.hint = req.body.hint || fc.hint;
+
+    await fc.save(function(err) {
+        if(err) return next(err);
+    });
+
+    res.status(200).json(fc);
 });
 module.exports = router;

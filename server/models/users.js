@@ -3,8 +3,7 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     email: { type: String },
-    password: { type: String },
-    //ownedFlashcards: [{type: mongoose.Types.ObjectId, ref: 'Flashcards'}]
+    password: { type: String }
 });
 
 module.exports = mongoose.model('Users', userSchema);
