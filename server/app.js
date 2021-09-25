@@ -7,6 +7,7 @@ var history = require('connect-history-api-fallback');
 var flashcardsController = require('./controllers/flashcards');
 var flashcardCollectionsController = require('./controllers/flashcardCollections');
 var usersController = require('./controllers/users');
+var goalsController = require('./controllers/goals');
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://gusschauma:p455w0rd@cluster0.jnai9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
@@ -41,6 +42,7 @@ app.get('/api', function(req, res) {
 app.use(flashcardsController);
 app.use(flashcardCollectionsController);
 app.use(usersController);
+app.use(goalsController);
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
