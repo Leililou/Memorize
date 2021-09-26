@@ -5,7 +5,7 @@ const flashcardSchema = new Schema({
     question: { type: String },
     answer: { type: String },
     hint: {type: String},
-    createdBy: {type: mongoose.Types.ObjectId, ref: 'Users'},
+    createdBy: {type: mongoose.Types.ObjectId, ref: 'users'}
 });
 
-module.exports = mongoose.model('Flashcards', flashcardSchema);
+module.exports = mongoose.model('flashcards', flashcardSchema);
