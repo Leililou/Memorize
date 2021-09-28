@@ -6,43 +6,65 @@
         </div>
         <div>
           <h3>Collections</h3>
-          <flashcardcollection-item v-bind:flashcardCollection="flashcardCollection"></flashcardcollection-item>
+          <div class="container-sm" style="margin-bottom: 10px" v-for="flashcardCollection in flashcardCollections" v-bind:key="flashcardCollection.id">
+            <div class="title">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="name"> {{ flashcardCollection.name }}</h5>
+                  <p class="desc"> {{ flashcardCollection.desc }} </p>
+                  <div class="buttons">
+                  <a href="#" class="start-quiz-button">Start</a> |
+                  <a href="#" class="edit-button">Edit</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import flashcardCollectionItem from '../components/flashcardCollectionItem.vue'
 import { Api } from '@/Api'
 
 export default {
-  name: 'flashcardCollections',
-  component: {
-    'flashcardCollection-item': flashcardCollectionItem
-  },
-  mounted() {
-    console.log('Page is now loaded!')
-  },
-  methods: {
-    deleteflashcardCollection(id) {
-      console.log(`Delete collection with id ${id}`)
-      Api.delete(`/api/flashcardCollections/${id}`)
-        .then(response => {
-          const index = this.flashcardCollections.findIndex(flashcardCollections => flashcardCollections.id === id)
-          this.flashcardCollections.splice(index, 1)
-        })
-    }
-  },
+  name: 'flashcards',
   data() {
     return {
       flashcardCollections: [
         {
-          name: 'name 1',
-          desc: 'desc 1',
-          id: '1'
+          id: '1',
+          name: '1st name',
+          desc: '1st description'
+        },
+        {
+          id: '2',
+          name: '2nd name',
+          desc: '2nd description'
+        },
+        {
+          id: '3',
+          name: '3rd name',
+          desc: '3rd description'
+        },
+        {
+          id: '4',
+          name: '4th name',
+          desc: '4th description'
         }
       ]
+    }
+  },
+  methods: {
+    newFlashCollection() {
+      Api.post('/api/flashcardCollections')
+        .then(response => {
+          this.flashcardCollections = response.data.flashcardCollections
+        })
+        .catch(error => {
+          this.flashcardCollections = error
+        })
     }
   }
 }
