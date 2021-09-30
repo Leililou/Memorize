@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const mongoose = require('mongoose');
 const Goals = require("../models/goals");
-const users = require("../models/users");
 
 router.post('/api/goals', async function(req, res, next){
     var new_goal = new Goals(req.body);
@@ -33,17 +31,21 @@ router.get('/api/goals/:id', async function(req, res, next) {
 });
 
 router.put('/api/goals/:id', async function(req, res, next) {
-    await Goals.findByIdAndUpdate(req.params.id, {'name': req.body.name, 'description': req.body.description, 'importanceRating': req.body.importanceRating}, function(err, goals) {
+    await Goals.findById(req.params.id, function(err, goals) {
         if(err) {return next(err);}
         if(goals === null) {
             return res.status(404).json({"message": "Goal not found"});
         }
+        goals.name = req.body.name;
+        goals.description = req.body.description;
+        goals.importanceRating = req.body.importanceRating;
+        goals.save();
         res.status(200).json(goals);
     });
 });
 
 router.patch('/api/goals/:id', async function(req, res, next) {
-    await Flashcards.findById(req.params.id, function(err, goals) {
+    await Goals.findById(req.params.id, function(err, goals) {
         if(err) {return next(err);}
         if(goals === null) {
             return res.status(404).json({"message": "Goal not found"});
@@ -57,7 +59,7 @@ router.patch('/api/goals/:id', async function(req, res, next) {
 });
 
 router.delete('/api/goals/:id', async function(req, res, next) {
-    await Goals.findByIdAndDelete(req.params.id, function(err, goals) {
+    await Goals.findOneAndDelete({_id: req.params.id}, function(err, goals) {
         if(err) {return next(err);}
         if(goals === null) {
             return res.status(404).json({"message": "Goal not found"});

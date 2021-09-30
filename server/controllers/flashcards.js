@@ -103,7 +103,7 @@ router.delete('/api/users/:user_id/flashcards/:id', async function(req, res, nex
 });
 
 router.delete('/api/flashcards/:id', async function(req, res, next) {
-    await Flashcards.findByIdAndDelete(req.params.id, function(err, flashcards) {
+    await Flashcards.findOneAndDelete({_id: req.params.id}, function(err, flashcards) {
         if(err) {return next(err);}
         if(flashcards === null) {
             return res.status(404).json({"message": "Flashcard not found"});

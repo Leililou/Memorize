@@ -3,7 +3,7 @@ const Flashcards = require('../models/flashcards');
 var router = express.Router();
 const Users = require("../models/users");
 
-router.post('/api/users', async function(req, res){
+router.post('/api/users', async function(req, res, next){
     var new_user = new Users(req.body);
     var password = new_user.password;
     new_user.password = scramblePass(password);
@@ -14,7 +14,7 @@ router.post('/api/users', async function(req, res){
     });
 });
 
-router.get('/api/users', async function(req, res) {
+router.get('/api/users', async function(req, res, next) {
     await Users.find({}, function(err, users) {
         if(err) {return next(err);}
         if(users && users.length === 0) {
@@ -24,7 +24,7 @@ router.get('/api/users', async function(req, res) {
     });
 });
 
-router.get('/api/users/:id', async function(req, res) {
+router.get('/api/users/:id', async function(req, res, next) {
     await Users.findById(req.params.id, function(err, users) {
         if(err) { return next(err); }
         if(users === null) {
@@ -34,7 +34,7 @@ router.get('/api/users/:id', async function(req, res) {
     });
 });
 
-router.put('/api/users/:id', async function(req, res) {
+router.put('/api/users/:id', async function(req, res, next) {
     await Users.findById(req.params.id, function(err, users) {
         if(err) return next(err);
         if(users === null) {
@@ -56,7 +56,7 @@ router.put('/api/users/:id', async function(req, res) {
     });
 });
 
-router.patch('/api/users/:id', async function(req, res) {
+router.patch('/api/users/:id', async function(req, res, next) {
     await Users.findById(req.params.id, function(err, users) {
         if(err) return next(err);
 
@@ -77,8 +77,8 @@ router.patch('/api/users/:id', async function(req, res) {
     });   
 });
 
-router.delete('/api/users/:id', async function(req, res) {
-    await Users.findByIdAndDelete(req.params.id, function(err, users) {
+router.delete('/api/users/:id', async function(req, res, next) {
+    await Users.findOneAndDelete({_id: req.params.id}, function(err, users) {
         if(err) {return next(err);}
         if(users === null) {return res.status(404).json("User not found");}
         res.status(200).json(users);

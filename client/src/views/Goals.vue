@@ -34,7 +34,7 @@ export default {
         {
           id: '1',
           num: '1',
-          goal: 'Goal 1 Goal 1 Goal 1 Goal 1 Goal 1 Goal 1 Goal 1 Goal 1 Goal 1 Goal 1 Goal 1 Goal 1 Goal 1 Goal 1 Goal 1 Goal 1 Goal 1 Goal 1 Goal 1 Goal 1 ',
+          goal: 'Goal 1 Goal 1lsöduofrigbadsölgfdsafal 1 Goal 1 Goal 1 Goal 1 Goal 1 Goal 1 Goal 1 ',
           status: 'Achieved!'
         },
         {

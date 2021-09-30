@@ -10,7 +10,7 @@ var usersController = require('./controllers/users');
 var goalsController = require('./controllers/goals');
 
 // Variables
-var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://gusschauma:p455w0rd@cluster0.jnai9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/animalDevelopmentDB';
 var port = process.env.PORT || 3000;
 
 // Connect to MongoDB
