@@ -5,7 +5,8 @@ import FlashcardCollections from './views/flashcardCollections.vue'
 import Goals from './views/Goals.vue'
 import About from './views/About.vue'
 import PostFlashcardCollection from './views/postFlashcardCollection.vue'
-import PatchFlashcardCollection from './views/patchFormCollection.vue'
+import EditFlashcardCollection from './views/patchFormCollection.vue'
+import Quiz from './views/Quiz.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -38,9 +39,14 @@ export default new Router({
       component: PostFlashcardCollection
     },
     {
-      path: '/flashcardCollection/patch/:_id',
-      name: 'patch',
-      component: PatchFlashcardCollection
+      path: '/flashcardCollection/Edit/:_id',
+      name: 'edit',
+      component: EditFlashcardCollection
+    },
+    {
+      path: '/flashcardCollections/61615d9f4dd22828a8e8fafd/Quiz',
+      name: 'quiz',
+      component: Quiz
     }
   ]
 })

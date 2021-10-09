@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const FlashcardCollections = require("../models/flashcardCollections");
+const Flashcards = require("../models/flashcards");
 const Users = require("../models/users");
 
 router.post('/api/flashcardCollections', function(req, res, next){
@@ -13,7 +14,7 @@ router.post('/api/flashcardCollections', function(req, res, next){
 
 router.post('/api/users/:user_id/flashcardCollections', async function(req, res, next){
     var user_id = req.params.user_id;
-    var new_flashcardCollection = new Flashcards(req.body);
+    var new_flashcardCollection = new FlashcardCollections(req.body);
     await Users.findById(user_id, function(err, users) {
         if(err) { return next(err); }
         if(users === null) {
@@ -27,6 +28,23 @@ router.post('/api/users/:user_id/flashcardCollections', async function(req, res,
     });
     res.status(201).json(new_flashcardCollection);
 });
+
+router.post('/api/flashcards/:flashcard_id/flashcardCollections/:id', async function(req, res, next) {
+    await FlashcardCollections.findById(req.params.id, function(err, flashcardCollections) {
+        if(err) return next(err);
+
+        if(flashcardCollections === null) {
+            return res.status(404).json({"message": "flashcardCollection not found"});
+        }
+
+        if(!flashcardCollections.flashcards.includes(req.params.flashcard_id)) {
+            flashcardCollections.flashcards.push(req.params.flashcard_id);
+            flashcardCollections.save();
+            return res.status(200).json(flashcardCollections);
+        }
+        res.status(304).json("Collection already contains flashcard");
+    });
+});
   
 router.get('/api/users/:user_id/flashcardCollections', async function(req, res, next){
     await FlashcardCollections.find({createdBy: req.params.user_id}, function(err, flashcardCollections) {
@@ -35,6 +53,16 @@ router.get('/api/users/:user_id/flashcardCollections', async function(req, res, 
             return res.status(404).json("This user does not own any collections");
         }
         res.status(200).json({"FlashcardCollections": flashcardCollections});
+    });
+});
+
+router.get('/api/flashcardCollections/:flashcardCollection_id/flashcards', async function(req, res, next){
+    await Flashcards.find({flashcardCollection: req.params.flashcardCollection_id}).populate('flashcards').exec(function(err, flashcards) {
+        if(err) return next(err);
+        if(flashcards && flashcards.length === 0) {
+            return res.status(404).json("This collection does not own any flashcards");
+        }
+        res.status(200).json({"Flashcards": flashcards});
     });
 });
 
@@ -76,6 +104,7 @@ router.put('/api/flashcardCollections/:id', async function(req, res, next) {
             return res.status(404).json({"message": "flashcardCollections not found"});
         }
         flashcardCollections.name = req.body.name;
+        flashcardCollections.desc = req.body.desc;
         flashcardCollections.save();
         res.status(200).json(flashcardCollections);
     });
@@ -89,6 +118,7 @@ router.patch('/api/flashcardCollections/:id', async function(req, res, next) {
             return res.status(404).json({"message": "flashcardCollections not found"});
         }
         flashcardCollections.name = req.body.name || flashcardCollections.name;
+        flashcardCollections.desc = req.body.desc || flashcardCollections.desc;
         flashcardCollections.save();
         res.status(200).json(flashcardCollections);
     });

@@ -1,29 +1,28 @@
 <template>
   <div id="app-6" :key="(collectionId = $route.params._id)">
     <div>
-    <form @submit="patchData" method="patch">
-      <input
-        required
-        type="text"
-        name="name"
-        placeholder="Name"
-        v-model="patches.name"
-      />
-      <br />
-      <br />
-      <input
-        required
-        type="text"
-        name="desc"
-        placeholder="Description"
-        v-model="patches.desc"
-      />
-      <b-button
-        v-on:click="patchData"
-        >Update Collection</b-button
-      >
-    </form>
-  </div>
+      <form @submit="patchData" method="patch">
+        <input
+          required
+          type="text"
+          name="name"
+          placeholder="Name"
+          v-model="patches.name"
+        />
+        <br />
+        <br />
+        <input
+          required
+          type="text"
+          name="desc"
+          placeholder="Description"
+          v-model="patches.desc"
+        />
+        <br>
+        <br>
+        <b-button v-on:click="patchData">Update Collection</b-button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -48,10 +47,14 @@ export default {
   },
   methods: {
     patchData(e) {
-      Api.patch('/flashcardCollections/' + this.collectionId, this.patches).then((result) => {
+      Api.patch(
+        '/flashcardCollections/' + this.collectionId,
+        this.patches
+      ).then((result) => {
         console.log(this.posts)
       })
       e.preventDefault()
+      window.location.href = '/flashcardCollections'
     }
   },
   data: function () {

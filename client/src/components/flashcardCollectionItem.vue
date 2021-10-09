@@ -4,8 +4,8 @@
       <h5 class="name">{{ flashcardCollection.name }}</h5>
       <p class="desc">{{ flashcardCollection.desc }}</p>
       <div class="buttons">
-        <a v-bind:href="'/flashcardCollections/'+ flashcardCollection._id" class="start-quiz-button">Start</a> |
-        <a v-bind:href="'/flashcardCollection/patch/'+ flashcardCollection._id" class="edit-button">Edit</a>
+        <a v-bind:href="'/flashcardCollections/'+ flashcardCollection._id +'/quiz'" class="start-quiz-button">Start</a> |
+        <a v-bind:href="'/flashcardCollection/edit/'+ flashcardCollection._id" class="edit-button">Edit</a>
         <div>
           <b-button
             variant="danger"
