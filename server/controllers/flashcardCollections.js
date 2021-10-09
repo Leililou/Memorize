@@ -29,20 +29,20 @@ router.post('/api/users/:user_id/flashcardCollections', async function(req, res,
     res.status(201).json(new_flashcardCollection);
 });
 
-router.post('/api/flashcards/:flashcard_id/flashcardCollections/:id', async function(req, res, next) {
+router.post('/api/flashcardCollections/:id/flashcards', async function(req, res, next) {
     await FlashcardCollections.findById(req.params.id, function(err, flashcardCollections) {
         if(err) return next(err);
 
         if(flashcardCollections === null) {
             return res.status(404).json({"message": "flashcardCollection not found"});
         }
-
-        if(!flashcardCollections.flashcards.includes(req.params.flashcard_id)) {
-            flashcardCollections.flashcards.push(req.params.flashcard_id);
-            flashcardCollections.save();
-            return res.status(200).json(flashcardCollections);
-        }
-        res.status(304).json("Collection already contains flashcard");
+        var new_flashcard = new Flashcards(req.body);
+        new_flashcard.save(function (err){
+            if(err) {return next(err);}
+        });
+        flashcardCollections.flashcards.push(new_flashcard._id);
+        flashcardCollections.save();
+        res.status(201).json(new_flashcard);
     });
 });
   
@@ -57,10 +57,11 @@ router.get('/api/users/:user_id/flashcardCollections', async function(req, res, 
 });
 
 router.get('/api/flashcardCollections/:flashcardCollection_id/flashcards', async function(req, res, next){
-    await Flashcards.find({flashcardCollection: req.params.flashcardCollection_id}).populate('flashcards').exec(function(err, flashcards) {
+    await FlashcardCollections.find({_id: req.params.flashcardCollection_id}).populate('flashcards').exec(function(err, flashcards) {
         if(err) return next(err);
         if(flashcards && flashcards.length === 0) {
-            return res.status(404).json("This collection does not own any flashcards");
+            console.log(flashcards);
+            return res.status(404).json("This collection does not have any flashcards");
         }
         res.status(200).json({"Flashcards": flashcards});
     });
