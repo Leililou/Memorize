@@ -7,6 +7,10 @@ import About from './views/About.vue'
 import PostFlashcardCollection from './views/postFlashcardCollection.vue'
 import EditFlashcardCollection from './views/patchFormCollection.vue'
 import Quiz from './views/Quiz.vue'
+import CreateFlashcard from './views/newFlashcardPost.vue'
+import EditFlashcard from './views/patchFlashcard.vue'
+import CreateGoal from './views/newGoal.vue'
+import EditGoal from './views/patchGoals.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -35,18 +39,38 @@ export default new Router({
     },
     {
       path: '/flashcardsCollection/post',
-      name: 'post',
+      name: 'postCollection',
       component: PostFlashcardCollection
     },
     {
       path: '/flashcardCollection/Edit/:_id',
-      name: 'edit',
+      name: 'editCollection',
       component: EditFlashcardCollection
     },
     {
-      path: '/flashcardCollections/61615d9f4dd22828a8e8fafd/Quiz',
+      path: '/flashcardCollections/:_id/Quiz',
       name: 'quiz',
       component: Quiz
+    },
+    {
+      path: '/flashcardsCollection/:_id/quiz/newflashcard',
+      name: 'createFlashcard',
+      component: CreateFlashcard
+    },
+    {
+      path: '/flashcardCollections/:collection_id/edit/:flashcard_id',
+      name: 'editFlashcard',
+      component: EditFlashcard
+    },
+    {
+      path: '/Goals/newGoal',
+      name: 'newGoal',
+      component: CreateGoal
+    },
+    {
+      path: '/Goals/edit/:_id',
+      name: 'editGoal',
+      component: EditGoal
     }
   ]
 })

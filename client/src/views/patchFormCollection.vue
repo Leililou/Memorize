@@ -51,7 +51,7 @@ export default {
         '/flashcardCollections/' + this.collectionId,
         this.patches
       ).then((result) => {
-        console.log(this.posts)
+        console.log(this.patches)
       })
       e.preventDefault()
       window.location.href = '/flashcardCollections'

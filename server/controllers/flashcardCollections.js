@@ -56,14 +56,14 @@ router.get('/api/users/:user_id/flashcardCollections', async function(req, res, 
     });
 });
 
-router.get('/api/flashcardCollections/:flashcardCollection_id/flashcards', async function(req, res, next){
+router.get('/api/flashcardCollections/:id/flashcards', async function(req, res, next){
     await FlashcardCollections.find({_id: req.params.flashcardCollection_id}).populate('flashcards').exec(function(err, flashcards) {
         if(err) return next(err);
         if(flashcards && flashcards.length === 0) {
             console.log(flashcards);
             return res.status(404).json("This collection does not have any flashcards");
         }
-        res.status(200).json({"Flashcards": flashcards});
+        res.status(200).json({"FlashcardCollection": flashcards});
     });
 });
 

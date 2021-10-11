@@ -5,6 +5,7 @@ var goalCollectionSchema = new Schema({
     name: {type: String},
     description: {type: String},
     importanceRating: {type: Number},
+    status: {type: String},
     createdBy: {type: mongoose.Types.ObjectId, ref: 'users'}
 });
 

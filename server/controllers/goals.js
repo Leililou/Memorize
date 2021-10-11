@@ -39,6 +39,7 @@ router.put('/api/goals/:id', async function(req, res, next) {
         goals.name = req.body.name;
         goals.description = req.body.description;
         goals.importanceRating = req.body.importanceRating;
+        goals.status = req.body.status;
         goals.save();
         res.status(200).json(goals);
     });
@@ -53,6 +54,7 @@ router.patch('/api/goals/:id', async function(req, res, next) {
         goals.name = req.body.name || goals.name;
         goals.description = req.body.description || goals.description;
         goals.importanceRating = req.body.importanceRating || goals.importanceRating;
+        goals.status = req.body.status || goals.status;
         goals.save();
         res.status(200).json(goals);
     });

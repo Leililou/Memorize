@@ -50,7 +50,7 @@ export default {
   methods: {
     deleteFlashcardCollection(_id) {
       console.log(`Deleted collection with id ${_id}`)
-      Api.delete(`/flashcardCollections/${_id}`).then((response) => {
+      Api.delete(`/flashcardCollections/${_id}`).then(() => {
         const index = this.flashcardCollections.findIndex(
           (flashcardCollection) => flashcardCollection._id === _id
         )

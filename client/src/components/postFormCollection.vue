@@ -1,10 +1,17 @@
 <template>
   <div>
     <form @submit="postData" method="post">
-      <input required type="text" name="name" placeholder="Name" v-model="posts.name" />
+      <input
+        required
+        type="text"
+        name="name"
+        placeholder="Name"
+        v-model="posts.name"
+      />
       <br />
       <br />
-      <input required
+      <input
+        required
         type="text"
         name="desc"
         placeholder="Description"
@@ -12,7 +19,7 @@
       />
       <br />
       <br />
-      <button type="submit">Post</button>
+      <button type="submit">Submit</button>
     </form>
   </div>
 </template>
@@ -35,6 +42,7 @@ export default {
         console.log(this.posts)
       })
       e.preventDefault()
+      window.location.href = '/flashcardCollections'
     }
   }
 }
