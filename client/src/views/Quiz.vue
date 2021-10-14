@@ -5,6 +5,13 @@
       <b-button variant="primary" v-bind:href="'/flashcardsCollection/' + collectionId + '/quiz/newflashcard'" class="newFlashcard-button">+ Flashcard</b-button>
     </div>
     <h3>The cards</h3>
+    /*
+    *
+     */
+
+     /*5
+     4
+      */
     <b-container>
       <b-row>
         <b-col
