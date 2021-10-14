@@ -2,17 +2,28 @@
   <div :key="(collectionId = $route.params._id)">
     <h1>Flashcards</h1>
     <div>
-      <b-button
-        variant="primary"
-        v-bind:href="
-          '/flashcardsCollection/' + collectionId + '/quiz/newflashcard'
-        "
-        class="newFlashcard-button"
+      <!-- modal goes here -->
+      <b-button class="new-goal" @click="$bvModal.show('modal-scoped')"
         >+ Flashcard</b-button
       >
+
+      <b-modal id="modal-scoped">
+        <template #modal-header>
+          <h4 id="form-heading">New Flashcard</h4>
+        </template>
+
+        <template #default>
+          <post-flashcard-item/>
+        </template>
+        <template #modal-footer="{ cancel }">
+          <b-button size="sm" variant="danger" @click="cancel()">
+            Cancel
+          </b-button>
+        </template>
+      </b-modal>
+      <!-- modal goes above -->
     </div>
     <h3>The cards</h3>
-    /* * */ /*5 4 */
     <b-container>
       <b-row>
         <b-col
@@ -34,11 +45,13 @@
 // @ is an alias to /src
 import { Api } from '@/Api'
 import FlashcardItem from '../components/flashcardItem.vue'
+import PostFlashcardItem from '../components/postFlashcardItem.vue'
 
 export default {
   name: 'flashcards',
   components: {
-    'flashcard-item': FlashcardItem
+    'flashcard-item': FlashcardItem,
+    'post-flashcard-item': PostFlashcardItem
   },
   mounted() {
     console.log('Page is loaded!')

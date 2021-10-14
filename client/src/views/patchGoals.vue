@@ -3,41 +3,46 @@
     <div>
       <form @submit="patchData" method="patch">
         <input
-        required
-        type="text"
-        name="name"
-        :placeholder="goal.name"
-        v-model="patches.name"
-      />
-      <br />
-      <br />
-      <input
-        required
-        type="text"
-        name="description"
-        :placeholder="goal.description"
-        v-model="patches.description"
-      />
-      <br />
-      <br />
-      <input
-        required
-        type="text"
-        name="status"
-        :placeholder="goal.status"
-        v-model="patches.status"
-      />
-      <br />
-      <br />
-      <input
-        required
-        type="text"
-        name="importanceRating"
-        :placeholder="goal.importanceRating"
-        v-model="patches.importanceRating"
-      />
-        <br>
-        <br>
+          class="inputs"
+          required
+          type="text"
+          name="name"
+          :placeholder="goal.name"
+          v-model="patches.name"
+        />
+        <br />
+        <br />
+        <input
+          class="inputs"
+          required
+          type="text"
+          name="description"
+          :placeholder="goal.description"
+          v-model="patches.description"
+        />
+        <br />
+        <br />
+        <input
+          class="inputs"
+          required
+          type="text"
+          name="status"
+          :placeholder="goal.status"
+          v-model="patches.status"
+        />
+        <br />
+        <br />
+        <div>
+          <b-form-select
+            required
+            v-model="patches.importanceRating"
+            :options="options"
+            class="inputs"
+          >
+          </b-form-select>
+        </div>
+        <br />
+        <br />
         <b-button v-on:click="checkInputFields">Update Goal</b-button>
       </form>
     </div>
@@ -116,8 +121,21 @@ export default {
         desc: null,
         importanceRating: null,
         status: null
-      }
+      },
+      options: [
+        { value: 1, text: 'Rating 1' },
+        { value: 2, text: 'Rating 2' },
+        { value: 3, text: 'Rating 3' },
+        { value: 4, text: 'Rating 4' },
+        { value: 5, text: 'Rating 5' }
+      ]
     }
   }
 }
 </script>
+
+<style scoped>
+.inputs {
+  width: 250px;
+}
+</style>

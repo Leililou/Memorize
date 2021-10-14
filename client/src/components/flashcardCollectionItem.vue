@@ -1,10 +1,10 @@
 <template>
   <div class="card border-success mb-3" style="width: 18rem mx-auto">
+    <!-- Add Background here for each bootstrap cards. -->
     <div class="card-body text-success">
       <h3 class="name card-title">{{ flashcardCollection.name }}</h3>
-      <h7 class="desc card-text"
-        ><strong>Description: </strong>{{ flashcardCollection.desc }}</h7
-      >
+      <h6 name="description" class="desc card-text"
+        ><strong>Description: </strong>{{ flashcardCollection.desc }}</h6>
       <div class="buttons">
         <a
           v-bind:href="
@@ -17,19 +17,19 @@
         <div>
           <div class="card-footer bg-white border-success">
             <b-button
-              class="btn btn-outline-danger"
+              class="btn btn-danger mr-1"
               v-on:click="
                 $emit('del-flashcardCollection', flashcardCollection._id)
               "
               >Delete</b-button
             >
-            <a
+            <b-button
               v-bind:href="
                 '/flashcardCollection/edit/' + flashcardCollection._id
               "
-              class="btn btn-outline-warning mr-1"
+              class="btn btn-primary mr-1"
               role="button"
-              >Edit</a
+              >Edit</b-button
             >
           </div>
         </div>
@@ -49,7 +49,7 @@ h3 {
   font: bold;
   color: rgb(5, 105, 18);
 }
-h7 {
+h6 {
   color: rgba(133, 133, 133, 0.884);
 }
 .desc {

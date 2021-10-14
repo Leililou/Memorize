@@ -1,43 +1,46 @@
 <template>
-<div id="all">
+  <div id="all">
     <h1>Flashcard Collections</h1>
     <div class="text-align-center">
       <div>
-<!-- lodal2-->
-<b-button class="new-collection" @click="$bvModal.show('modal-scoped')">+ New collection</b-button>
+        <!-- modal2-->
+        <b-button class="new-collection" @click="$bvModal.show('modal-scoped')"
+          >+ New collection</b-button
+        >
+        <b-modal id="modal-scoped">
+          <template #modal-header>
+            <h4 id="form-heading">New collection</h4>
+          </template>
 
-  <b-modal id="modal-scoped">
-    <template #modal-header>
-
-      <h4 id="form-heading">New collection</h4>
-    </template>
-
-    <template #default>
-      <Post-FlashCard-Collection/>
-
-    </template>
-<template #modal-footer="{cancel}">
-      <b-button size="sm" variant="danger" @click="cancel()">
-        Cancel
-      </b-button>
-    </template>
-  </b-modal>
-<!-- modal2-->
- </div>
-    <div>
-      <div class="row">
-  <div class="col-6 col-sm-3" v-for="flashcardCollection in flashcardCollections"
-            v-bind:key="flashcardCollection._id"><flashcardCollection-item
+          <template #default>
+            <Post-FlashCard-Collection />
+          </template>
+          <template #modal-footer="{ cancel }">
+            <b-button size="sm" variant="danger" @click="cancel()">
+              Cancel
+            </b-button>
+          </template>
+        </b-modal>
+        <!-- modal2-->
+      </div>
+      <div>
+        <div class="row">
+          <div
+            class="col-6 col-sm-3"
+            v-for="flashcardCollection in flashcardCollections"
+            v-bind:key="flashcardCollection._id"
+          >
+            <flashcardCollection-item
               v-bind:flashcardCollection="flashcardCollection"
               v-on:del-flashcardCollection="deleteFlashcardCollection"
-            /></div>
-  <!-- Force next columns to break to new line -->
-  <div class="w-100"></div>
-
-</div>
+            />
+          </div>
+          <!-- Force next columns to break to new line -->
+          <div class="w-100"></div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -47,7 +50,6 @@ import FlashcardCollectionItem from '../components/flashcardCollectionItem.vue'
 import PostFlashcardCollection from '../components/postFormCollection.vue'
 
 export default {
-
   name: 'flashcardCollections',
   components: {
     'flashcardCollection-item': FlashcardCollectionItem,
@@ -97,19 +99,18 @@ export default {
 }
 </script>
 <style scoped>
-.new-collection{
+.new-collection {
   background: rgb(20, 139, 30);
-  margin-top : 60px;
-  margin-bottom: 60px;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 
-#all{
+#all {
   margin-left: 10px;
   margin-right: 10px;
 }
-#form-heading{
+#form-heading {
   text-align: center;
-  display:inline-block;
+  display: inline-block;
 }
-
 </style>

@@ -51,7 +51,7 @@ export default new Router({
       component: EditFlashcardCollection
     },
     {
-      path: '/flashcardCollections/:_id/Quiz',
+      path: '/flashcardCollection/:_id/Quiz',
       name: 'quiz',
       component: Quiz
     },

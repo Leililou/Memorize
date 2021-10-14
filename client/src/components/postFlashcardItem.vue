@@ -45,8 +45,7 @@ export default {
       )
         .then((result) => {
           console.log(this.posts)
-          window.location.href =
-            '/flashcardCollections/' + this.collectionId + '/quiz'
+          window.location.reload()
         })
         .catch(function (error) {
           if (error.response) {

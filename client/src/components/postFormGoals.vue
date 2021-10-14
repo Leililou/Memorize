@@ -1,7 +1,8 @@
 <template>
   <div>
-    <form @submit="postData" method="post">
+    <form @submit="postData">
       <input
+        class="inputs"
         required
         type="text"
         name="name"
@@ -11,6 +12,7 @@
       <br />
       <br />
       <input
+        class="inputs"
         required
         type="text"
         name="description"
@@ -20,6 +22,7 @@
       <br />
       <br />
       <input
+        class="inputs"
         required
         type="text"
         name="status"
@@ -28,16 +31,18 @@
       />
       <br />
       <br />
-      <input
-        required
-        type="text"
-        name="importanceRating"
-        placeholder="Importance Rating"
-        v-model="posts.importanceRating"
-      />
+      <div>
+        <b-form-select
+          required
+          v-model="posts.importanceRating"
+          :options="options"
+          class="inputs"
+        >
+        </b-form-select>
+      </div>
       <br />
       <br />
-      <button type="submit">Submit</button>
+      <b-button variant="primary" type="submit">Submit</b-button>
     </form>
   </div>
 </template>
@@ -53,7 +58,14 @@ export default {
         description: null,
         importanceRating: null,
         status: null
-      }
+      },
+      options: [
+        { value: 1, text: 'Rating 1' },
+        { value: 2, text: 'Rating 2' },
+        { value: 3, text: 'Rating 3' },
+        { value: 4, text: 'Rating 4' },
+        { value: 5, text: 'Rating 5' }
+      ]
     }
   },
   methods: {
@@ -61,7 +73,7 @@ export default {
       Api.post('/goals', this.posts)
         .then((result) => {
           console.log(this.posts)
-          window.location.href = '/Goals'
+          window.location.reload()
         })
         .catch(function (error) {
           if (error.response) {
@@ -78,6 +90,11 @@ export default {
   }
 }
 </script>
+<style scoped>
+.inputs {
+  width: 250px;
+}
+</style>
 
 <!--
 To do:

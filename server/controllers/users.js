@@ -47,7 +47,7 @@ router.get('/api/users/:username/:password', async function (req, res, next) {
                 return res.status(200).json(users._id);
             }
         }
-        return res.status(404).json({ "message": "Password too smoll" });
+        return res.status(404).json({ "message": "Password incorrect." });
     });
 });
 

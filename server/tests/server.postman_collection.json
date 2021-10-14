@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "28d42a6b-f5b0-46cd-8e5a-a097ea501009",
+		"_postman_id": "4f565358-6932-4125-8480-90e07bbafbcf",
 		"name": "server",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -138,8 +138,11 @@
 							"pm.test(\"Status code is 201\", function () {",
 							"  pm.response.to.have.status(201);",
 							"});",
+							"let password = JSON.parse(pm.request.body.raw).password",
 							"let jsonData = pm.response.json();",
-							"pm.environment.set(\"user_Id\", jsonData._id);"
+							"pm.environment.set(\"user_Id\", jsonData._id);",
+							"pm.environment.set(\"username\", jsonData.username);",
+							"pm.environment.set(\"password\", password);"
 						],
 						"type": "text/javascript"
 					}
@@ -161,7 +164,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"testemail\",\n    \"password\": \"testword\"\n}"
+					"raw": "{\n    \"username\": \"testusername\",\n    \"password\": \"testpassword\"\n}"
 				},
 				"url": {
 					"raw": "{{host}}/api/users",
@@ -915,6 +918,76 @@
 						{
 							"key": "id",
 							"value": "{{goalId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/users/:username/:password",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/api/users/:username/:password",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						":username",
+						":password"
+					],
+					"variable": [
+						{
+							"key": "username",
+							"value": "{{username}}"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}"
 						}
 					]
 				}

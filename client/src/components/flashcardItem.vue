@@ -5,22 +5,35 @@
     :key="(collectionId = $route.params._id)"
   >
     <div class="card-body">
-      <h5 class="question">Q: {{ flashcard.question }}</h5>
-      <h5 class="answer">A: {{ flashcard.answer }}</h5>
-      <div class="Buttons">
-        <b-button
-          variant="primary"
-          v-bind:href="
-            '/flashcardCollections/' + collectionId + '/edit/' + flashcard._id
-          "
-          >Edit</b-button
+      <h5 class="question">{{ flashcard.question }}</h5>
+      <p v-show="isDisplay" class="answer">{{ flashcard.answer }}</p>
+      <div class="buttons">
+        <a
+          v-on:click="isDisplay = !isDisplay"
+          class="btn btn-outline-success mr-1"
+          role="button"
+          >Toggle Answer</a
         >
-        |
-        <b-button
-          variant="danger"
-          v-on:click="$emit('del-flashcard', flashcard._id)"
-          >X</b-button
-        >
+        <div>
+          <div class="card-footer bg-white border-success">
+            <b-button
+              variant="primary"
+              v-bind:href="
+                '/flashcardCollections/' +
+                collectionId +
+                '/edit/' +
+                flashcard._id
+              "
+              >Edit</b-button
+            >
+            |
+            <b-button
+              variant="danger"
+              v-on:click="$emit('del-flashcard', flashcard._id)"
+              >X</b-button
+            >
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -32,8 +45,15 @@ export default {
   props: ['flashcard'],
   data() {
     return {
+      isDisplay: false,
       collectionId: 0
     }
   }
 }
 </script>
+
+<style scoped>
+.card-footer {
+  margin-top: 10px;
+}
+</style>

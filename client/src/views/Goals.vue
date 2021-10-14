@@ -2,47 +2,42 @@
   <div>
     <h1>Goals</h1>
     <div>
-      <a class="btn btn-primary" href="/Goals/newGoal" role="button"
-        >+ New Goal</a
+        <b-button @click="showModal" ref="btnShow" variant="outline-danger">Delete All Goals</b-button>
+      <!--b-button v-on:click="deleteUser" variant="danger">X</b-button-->
+      <b-modal
+        id="modal-1"
+        ok-title="Confirm"
+        @ok="deleteAllGoals"
+        @cancel="hideModal"
       >
+        <div class="d-block">Please press Confirm to delete all goals.</div>
+      </b-modal>
     </div>
     <div>
-      <div class="container-sm">
-        <table class="table" style="margin-top: 15px">
-          <thead>
-            <tr>
-              <th scope="col" style="width: 75px">Importance<br />1 - 5</th>
-              <th scope="col" style="width: 250px">Title</th>
-              <th scope="col">Goal</th>
-              <th scope="col" style="width: 180px">Status</th>
-            </tr>
-          </thead>
-          <tbody v-for="goal in goals" v-bind:key="goal._id">
-            <tr v-bind:goal="goal">
-              <th scope="row">{{ goal.importanceRating }}</th>
-              <td>{{ goal.name }}</td>
-              <td>{{ goal.description }}</td>
-              <td>{{ goal.status }}</td>
-              <div class="Buttons">
-                <b-button
-                  variant="primary"
-                  v-bind:href="'/goals/edit/' + goal._id"
-                  >Edit</b-button
-                >
-                |
-                <b-button variant="danger" v-on:click="deleteGoal(goal._id)"
-                  >X</b-button
-                >
-              </div>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <br /><br />
-        <b-button @click="deleteAllGoals" variant="outline-danger"
-          >Danger</b-button
-        >
+      <!-- modal goes here -->
+      <b-button class="new-goal" @click="$bvModal.show('modal-scoped')"
+        >+ New Goal</b-button
+      >
+
+      <b-modal id="modal-scoped">
+        <template #modal-header>
+          <h4 id="form-heading">New Goal</h4>
+        </template>
+
+        <template #default>
+          <post-goal-item />
+        </template>
+        <template #modal-footer="{ cancel }">
+          <b-button size="sm" variant="danger" @click="cancel()">
+            Cancel
+          </b-button>
+        </template>
+      </b-modal>
+      <!-- modal goes above -->
+    </div>
+    <div class="row">
+      <div class="col-6 col-sm-3" v-for="goal in goals" v-bind:key="goal._id">
+        <goal-item-card v-bind:goal="goal" v-on:del-goal="deleteGoal"/>
       </div>
     </div>
   </div>
@@ -51,9 +46,15 @@
 <script>
 // @ is an alias to /src
 import { Api } from '@/Api'
+import PostGoalItem from '../components/postFormGoals.vue'
+import GoalItemCard from '../components/goalsItemCard.vue'
 
 export default {
-  name: 'goals',
+  name: 'goal',
+  components: {
+    'post-goal-item': PostGoalItem,
+    'goal-item-card': GoalItemCard
+  },
   mounted() {
     console.log('Page has been loaded!')
     Api.get('/goals')
@@ -74,6 +75,12 @@ export default {
       })
   },
   methods: {
+    showModal() {
+      this.$root.$emit('bv::show::modal', 'modal-1', '#btnShow')
+    },
+    hideModal() {
+      this.$root.$emit('bv::hide::modal', 'modal-1', '#btnShow')
+    },
     deleteGoal(_id) {
       console.log(`Deleted collection with id ${_id}`)
       Api.delete(`/goals/${_id}`).then(() => {
