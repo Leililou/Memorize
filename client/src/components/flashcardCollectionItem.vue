@@ -1,20 +1,17 @@
 <template>
-  <div class="card" style="width: 18rem mx-auto">
-    <div class="card-body">
-      <h5 class="name">{{ flashcardCollection.name }}</h5>
-      <p class="desc">{{ flashcardCollection.desc }}</p>
+
+  <div class="card border-success mb-3" style="width: 18rem mx-auto">
+    <div class="card-body text-success">
+      <h3 class="name card-title">{{ flashcardCollection.name }}</h3>
+        <h7 class="desc card-text"><strong>Description: </strong>{{ flashcardCollection.desc }}</h7>
       <div class="buttons">
-        <a v-bind:href="'/flashcardCollections/'+ flashcardCollection._id +'/quiz'" class="start-quiz-button">Start</a> |
-        <a v-bind:href="'/flashcardCollection/edit/'+ flashcardCollection._id" class="edit-collection-button">Edit</a>
+           <a v-bind:href="'/flashcardCollection/'+ flashcardCollection._id+'/quiz'" class="btn btn-outline-success mr-1" role="button">Start the collection</a>
         <div>
-          <b-button
-            variant="danger"
-            v-on:click="
-              $emit('del-flashcardCollection', flashcardCollection._id)
-            "
-            >Delete Collection</b-button
-          >
-        </div>
+          <div class="card-footer bg-white border-success">
+            <b-button class="btn btn-outline-danger" v-on:click="$emit('del-flashcardCollection', flashcardCollection._id)">Delete</b-button>
+          <a v-bind:href="'/flashcardCollection/edit/'+ flashcardCollection._id" class="btn btn-outline-warning mr-1 " role="button">Edit</a>
+      </div>
+           </div>
       </div>
     </div>
   </div>
@@ -26,3 +23,26 @@ export default {
   props: ['flashcardCollection']
 }
 </script>
+<style scoped>
+h3{
+  font: bold;
+  color: rgb(5, 105, 18);
+}
+h7{
+  color: rgba(133, 133, 133, 0.884);
+}
+.desc{
+  font-style: oblique;
+}
+
+.btn{
+  margin-top : 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+.card-footer{
+  white-space: pre-wrap;
+}
+
+</style>

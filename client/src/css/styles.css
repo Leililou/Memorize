@@ -1,0 +1,23 @@
+
+/*6.4.a	At least six class selectors
+.warning{
+	
+}
+*/
+body{
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+footer{
+    margin-top: auto;
+}
+/*6.1	Reasonable and convienient UI (e.g., no tech details)
+6.2	All pages are responsive
+6.3	Different responsive layout on one page
+	CSS styling:
+6.4.a	At least six class selectors
+6.4.b	At least two element selectors
+6.4.c	At least two ID selectors
+6.4.d	At least one additional selector
+6.4.e	All styling through CSS (e.g., no tables for layouting)*/

@@ -1,39 +1,59 @@
 <template>
-  <div>
+<div id="all">
     <h1>Flashcard Collections</h1>
     <div class="text-align-center">
-      <a class="btn btn-primary" href="/flashcardsCollection/post" role="button">+ New Collection</a>
-    </div>
+      <div>
+<!-- lodal2-->
+<b-button class="new-collection" @click="$bvModal.show('modal-scoped')">+ New collection</b-button>
+
+  <b-modal id="modal-scoped">
+    <template #modal-header>
+
+      <h4 id="form-heading">New collection</h4>
+    </template>
+
+    <template #default>
+      <Post-FlashCard-Collection/>
+
+    </template>
+<template #modal-footer="{cancel}">
+      <b-button size="sm" variant="danger" @click="cancel()">
+        Cancel
+      </b-button>
+    </template>
+  </b-modal>
+<!-- modal2-->
+ </div>
     <div>
-      <h3>Collections</h3>
-      <b-container>
-        <b-row>
-          <b-col
-            v-for="flashcardCollection in flashcardCollections"
-            v-bind:key="flashcardCollection._id"
-            style="margin-bottom: 15px"
-          >
-            <flashcardCollection-item
+      <div class="row">
+  <div class="col-6 col-sm-3" v-for="flashcardCollection in flashcardCollections"
+            v-bind:key="flashcardCollection._id"><flashcardCollection-item
               v-bind:flashcardCollection="flashcardCollection"
               v-on:del-flashcardCollection="deleteFlashcardCollection"
-            />
-          </b-col>
-        </b-row>
-      </b-container>
+            /></div>
+  <!-- Force next columns to break to new line -->
+  <div class="w-100"></div>
+
+</div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
 // @ is an alias to /src
 import { Api } from '@/Api'
 import FlashcardCollectionItem from '../components/flashcardCollectionItem.vue'
+import PostFlashcardCollection from '../components/postFormCollection.vue'
 
 export default {
+
   name: 'flashcardCollections',
   components: {
-    'flashcardCollection-item': FlashcardCollectionItem
+    'flashcardCollection-item': FlashcardCollectionItem,
+    'Post-FlashCard-Collection': PostFlashcardCollection
   },
+
   mounted() {
     console.log('Page is loaded!')
     Api.get('/flashcardCollections')
@@ -65,3 +85,20 @@ export default {
   }
 }
 </script>
+<style scoped>
+.new-collection{
+  background: rgb(20, 139, 30);
+  margin-top : 60px;
+  margin-bottom: 60px;
+}
+
+#all{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+#form-heading{
+  text-align: center;
+  display:inline-block;
+}
+
+</style>

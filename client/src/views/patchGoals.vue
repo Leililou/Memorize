@@ -6,7 +6,7 @@
         required
         type="text"
         name="name"
-        placeholder="Name"
+        :placeholder="goal.name"
         v-model="patches.name"
       />
       <br />
@@ -15,7 +15,7 @@
         required
         type="text"
         name="description"
-        placeholder="Description"
+        :placeholder="goal.description"
         v-model="patches.description"
       />
       <br />
@@ -24,7 +24,7 @@
         required
         type="text"
         name="status"
-        placeholder="Status"
+        :placeholder="goal.status"
         v-model="patches.status"
       />
       <br />
@@ -33,7 +33,7 @@
         required
         type="text"
         name="importanceRating"
-        placeholder="Importance Rating"
+        :placeholder="goal.importanceRating"
         v-model="patches.importanceRating"
       />
         <br>
@@ -55,9 +55,9 @@ export default {
       .then((response) => {
         console.log(response)
         this.goal.name = response.data.name
-        this.goal.desc = response.data.description
-        this.goal.desc = response.data.importanceRating
-        this.goal.desc = response.data.status
+        this.goal.description = response.data.description
+        this.goal.importanceRating = response.data.importanceRating
+        this.goal.status = response.data.status
       })
       .then(() => {
         console.log(

@@ -1,5 +1,7 @@
 <template>
   <div>
+    <div>
+    </div>
     <form @submit="postData" method="post">
       <input
         required
@@ -19,7 +21,7 @@
       />
       <br />
       <br />
-      <button type="submit">Submit</button>
+      <b-button size="sm" variant="success" type="submit">Submit</b-button>
     </form>
   </div>
 </template>
@@ -47,3 +49,8 @@ export default {
   }
 }
 </script>
+<style>
+form{
+text-align: center;
+}
+</style>
