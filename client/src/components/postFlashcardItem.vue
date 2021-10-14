@@ -1,6 +1,6 @@
 <template>
   <div :key="(collectionId = $route.params._id)">
-    <form @submit="postData" method="post">
+    <form @submit="postData">
       <input
         required
         type="text"

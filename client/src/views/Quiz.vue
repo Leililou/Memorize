@@ -13,7 +13,7 @@
         </template>
 
         <template #default>
-          <post-flashcard-item/>
+          <post-flashcard-item />
         </template>
         <template #modal-footer="{ cancel }">
           <b-button size="sm" variant="danger" @click="cancel()">
@@ -27,6 +27,7 @@
     <b-container>
       <b-row>
         <b-col
+          class="col-6 col-sm-3"
           v-for="flashcard in flashcards"
           v-bind:key="flashcard._id"
           style="margin-bottom: 15px"

@@ -1,7 +1,7 @@
 <template>
   <div
     class="card"
-    style="width: 18rem mx-auto"
+    style="width: 18rem mx-small"
     :key="(collectionId = $route.params._id)"
   >
     <div class="card-body">

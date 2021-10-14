@@ -1,7 +1,7 @@
 <template>
   <div>
     <div></div>
-    <form @submit="postData" method="post">
+    <form @submit="postData">
       <input
         required
         type="text"

@@ -2,8 +2,12 @@
   <div>
     <h1>Goals</h1>
     <div>
-        <b-button @click="showModal" ref="btnShow" variant="outline-danger">Delete All Goals</b-button>
-      <!--b-button v-on:click="deleteUser" variant="danger">X</b-button-->
+      <div style="margin-bottom: 5px">
+        <b-button @click="showModal" ref="btnShow" variant="outline-danger"
+          >Delete All Goals</b-button
+        >
+      </div>
+
       <b-modal
         id="modal-1"
         ok-title="Confirm"
@@ -13,7 +17,7 @@
         <div class="d-block">Please press Confirm to delete all goals.</div>
       </b-modal>
     </div>
-    <div>
+    <div style="margin-bottom: 15px">
       <!-- modal goes here -->
       <b-button class="new-goal" @click="$bvModal.show('modal-scoped')"
         >+ New Goal</b-button
@@ -37,7 +41,7 @@
     </div>
     <div class="row">
       <div class="col-6 col-sm-3" v-for="goal in goals" v-bind:key="goal._id">
-        <goal-item-card v-bind:goal="goal" v-on:del-goal="deleteGoal"/>
+        <goal-item-card v-bind:goal="goal" v-on:del-goal="deleteGoal" />
       </div>
     </div>
   </div>
