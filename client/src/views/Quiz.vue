@@ -2,16 +2,17 @@
   <div :key="(collectionId = $route.params._id)">
     <h1>Flashcards</h1>
     <div>
-      <b-button variant="primary" v-bind:href="'/flashcardsCollection/' + collectionId + '/quiz/newflashcard'" class="newFlashcard-button">+ Flashcard</b-button>
+      <b-button
+        variant="primary"
+        v-bind:href="
+          '/flashcardsCollection/' + collectionId + '/quiz/newflashcard'
+        "
+        class="newFlashcard-button"
+        >+ Flashcard</b-button
+      >
     </div>
     <h3>The cards</h3>
-    /*
-    *
-     */
-
-     /*5
-     4
-      */
+    /* * */ /*5 4 */
     <b-container>
       <b-row>
         <b-col
@@ -41,12 +42,22 @@ export default {
   },
   mounted() {
     console.log('Page is loaded!')
-    Api.get('/flashcardCollections/' + this.collectionId + '/flashcards').then(
-      (response) => {
+    Api.get('/flashcardCollections/' + this.collectionId + '/flashcards')
+      .then((response) => {
         console.log(response)
         this.flashcards = response.data.FlashcardCollection[0].flashcards
-      }
-    )
+      })
+      .catch(function (error) {
+        if (error.response) {
+          console.log(error.response.data)
+          console.log(error.response.status)
+          console.log(error.response.headers)
+        } else if (error.request) {
+          console.log(error.request)
+        } else {
+          console.log('Error', error.message)
+        }
+      })
   },
   methods: {
     deleteFlashcard(_id) {

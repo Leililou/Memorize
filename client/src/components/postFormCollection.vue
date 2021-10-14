@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div>
-    </div>
+    <div></div>
     <form @submit="postData" method="post">
       <input
         required
@@ -39,18 +38,29 @@ export default {
     }
   },
   methods: {
-    postData(e) {
-      Api.post('/flashcardCollections', this.posts).then((result) => {
-        console.log(this.posts)
-      })
-      e.preventDefault()
-      window.location.href = '/flashcardCollections'
+    postData() {
+      Api.post('/flashcardCollections', this.posts)
+        .then((result) => {
+          console.log(this.posts)
+          window.location.href = '/flashcardCollections'
+        })
+        .catch(function (error) {
+          if (error.response) {
+            console.log(error.response.data)
+            console.log(error.response.status)
+            console.log(error.response.headers)
+          } else if (error.request) {
+            console.log(error.request)
+          } else {
+            console.log('Error', error.message)
+          }
+        })
     }
   }
 }
 </script>
 <style>
-form{
-text-align: center;
+form {
+  text-align: center;
 }
 </style>

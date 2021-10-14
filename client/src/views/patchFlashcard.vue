@@ -18,8 +18,8 @@
           placeholder="Answer"
           v-model="patches.answer"
         />
-        <br>
-        <br>
+        <br />
+        <br />
         <b-button v-on:click="patchData">Update Flashcard</b-button>
       </form>
     </div>
@@ -34,27 +34,30 @@ export default {
   mounted() {
     console.log('Page is loaded!')
     Api.get('/flashcards/' + this.flashcardId)
-      .then((response) => {
-        console.log(response)
-        this.flashcard.question = response.data.question
-        this.flashcard.answer = response.data.answer
-      })
       .then(() => {
-        console.log(
-          'Hi. This shows after each iteration of api.get'
-        )
+        console.log('Hi. This shows after each iteration of api.get')
+      })
+      .catch(function (error) {
+        if (error.response) {
+          console.log(error.response.data)
+          console.log(error.response.status)
+          console.log(error.response.headers)
+        } else if (error.request) {
+          console.log(error.request)
+        } else {
+          console.log('Error', error.message)
+        }
       })
   },
   methods: {
-    patchData(e) {
-      Api.patch(
-        '/flashcards/' + this.flashcardId,
-        this.patches
-      ).then((result) => {
-        console.log(this.posts)
-      })
-      e.preventDefault()
-      window.location.href = '/flashcardCollections/' + this.collectionId + '/quiz'
+    patchData() {
+      Api.patch('/flashcards/' + this.flashcardId, this.patches).then(
+        (result) => {
+          console.log(this.posts)
+          window.location.href =
+            '/flashcardCollections/' + this.collectionId + '/quiz'
+        }
+      )
     }
   },
   data: function () {

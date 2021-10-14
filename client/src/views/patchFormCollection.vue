@@ -18,8 +18,8 @@
           placeholder="Description"
           v-model="patches.desc"
         />
-        <br>
-        <br>
+        <br />
+        <br />
         <b-button v-on:click="patchData">Update Collection</b-button>
       </form>
     </div>
@@ -34,15 +34,21 @@ export default {
   mounted() {
     console.log('Page is loaded!')
     Api.get('/flashcardCollections/' + this.collectionId)
-      .then((response) => {
-        console.log(response)
-        this.flashcardCollection.name = response.data.name
-        this.flashcardCollection.desc = response.data.desc
-      })
       .then(() => {
         console.log(
           'Hi. This shows after each iteration of api.get(/api/flashcardCollections)'
         )
+      })
+      .catch(function (error) {
+        if (error.response) {
+          console.log(error.response.data)
+          console.log(error.response.status)
+          console.log(error.response.headers)
+        } else if (error.request) {
+          console.log(error.request)
+        } else {
+          console.log('Error', error.message)
+        }
       })
   },
   methods: {

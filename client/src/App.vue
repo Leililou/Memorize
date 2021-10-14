@@ -11,6 +11,7 @@
   <a href="/flashcardCollections">Flashcards Collections</a>
   <a href="/Goals">Goals</a>
   <a href="/About">About</a>
+  <a href="/UsersSignUp">Users</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>

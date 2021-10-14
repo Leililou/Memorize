@@ -11,6 +11,9 @@ import CreateFlashcard from './views/newFlashcardPost.vue'
 import EditFlashcard from './views/patchFlashcard.vue'
 import CreateGoal from './views/newGoal.vue'
 import EditGoal from './views/patchGoals.vue'
+import CreateUser from './views/CreateUser.vue'
+import UsersLogin from './views/LogInUsers.vue'
+import UserPage from './views/UserPage.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -71,6 +74,21 @@ export default new Router({
       path: '/Goals/edit/:_id',
       name: 'editGoal',
       component: EditGoal
+    },
+    {
+      path: '/UsersSignUp',
+      name: 'createUser',
+      component: CreateUser
+    },
+    {
+      path: '/UsersLogin',
+      name: 'usersLogin',
+      component: UsersLogin
+    },
+    {
+      path: '/users/:_id',
+      name: 'userPage',
+      component: UserPage
     }
   ]
 })

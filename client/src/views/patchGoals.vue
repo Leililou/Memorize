@@ -38,7 +38,7 @@
       />
         <br>
         <br>
-        <b-button v-on:click="patchData">Update Goal</b-button>
+        <b-button v-on:click="checkInputFields">Update Goal</b-button>
       </form>
     </div>
   </div>
@@ -64,17 +64,42 @@ export default {
           'Hi. This shows after each iteration of api.get(/api/flashcardCollections)'
         )
       })
+      .catch(function (error) {
+        if (error.response) {
+          console.log(error.response.data)
+          console.log(error.response.status)
+          console.log(error.response.headers)
+        } else if (error.request) {
+          console.log(error.request)
+        } else {
+          console.log('Error', error.message)
+        }
+      })
   },
   methods: {
-    patchData(e) {
-      Api.patch(
-        '/goals/' + this.goalId,
-        this.patches
-      ).then((result) => {
+    putData() {
+      Api.put('/goals/' + this.goalId, this.patches).then((result) => {
         console.log(this.patches)
+        window.location.href = '/Goals'
       })
-      e.preventDefault()
-      window.location.href = '/Goals'
+    },
+    patchData() {
+      Api.patch('/goals/' + this.goalId, this.patches).then((result) => {
+        console.log(this.patches)
+        window.location.href = '/Goals'
+      })
+    },
+    checkInputFields() {
+      if (
+        this.patches.name === null ||
+        this.patches.description === null ||
+        this.patches.importanceRating === null ||
+        this.patches.status === null
+      ) {
+        return this.patchData()
+      } else {
+        return this.putData()
+      }
     }
   },
   data: function () {

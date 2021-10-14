@@ -2,7 +2,9 @@
   <div>
     <h1>Goals</h1>
     <div>
-      <a class="btn btn-primary" href="/Goals/newGoal" role="button">+ New Goal</a>
+      <a class="btn btn-primary" href="/Goals/newGoal" role="button"
+        >+ New Goal</a
+      >
     </div>
     <div>
       <div class="container-sm">
@@ -36,6 +38,12 @@
           </tbody>
         </table>
       </div>
+      <div>
+        <br /><br />
+        <b-button @click="deleteAllGoals" variant="outline-danger"
+          >Danger</b-button
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -48,10 +56,22 @@ export default {
   name: 'goals',
   mounted() {
     console.log('Page has been loaded!')
-    Api.get('/goals').then((response) => {
-      console.log(response)
-      this.goals = response.data.Goals
-    })
+    Api.get('/goals')
+      .then((response) => {
+        console.log(response)
+        this.goals = response.data.Goals
+      })
+      .catch(function (error) {
+        if (error.response) {
+          console.log(error.response.data)
+          console.log(error.response.status)
+          console.log(error.response.headers)
+        } else if (error.request) {
+          console.log(error.request)
+        } else {
+          console.log('Error', error.message)
+        }
+      })
   },
   methods: {
     deleteGoal(_id) {
@@ -60,6 +80,10 @@ export default {
         const index = this.goals.findIndex((goal) => goal._id === _id)
         this.goals.splice(index, 1)
       })
+    },
+    deleteAllGoals() {
+      console.log('Deleted all goals')
+      Api.delete('/goals').then(() => window.location.reload())
     }
   },
   data() {
