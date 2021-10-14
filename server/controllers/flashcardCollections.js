@@ -57,7 +57,7 @@ router.get('/api/users/:user_id/flashcardCollections', async function(req, res, 
 });
 
 router.get('/api/flashcardCollections/:id/flashcards', async function(req, res, next){
-    await FlashcardCollections.find({_id: req.params.flashcardCollection_id}).populate('flashcards').exec(function(err, flashcards) {
+    await FlashcardCollections.find({_id: req.params.id}).populate('flashcards').exec(function(err, flashcards) {
         if(err) return next(err);
         if(flashcards && flashcards.length === 0) {
             console.log(flashcards);
