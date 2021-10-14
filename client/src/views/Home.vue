@@ -15,6 +15,8 @@ Studies has shown that rehearsing information is the best way to ensure that you
   margin-bottom: 1em;
 }
 #grad2{
+   background-color: #cccccc;
+  background-image: linear-gradient(rgb(245, 207, 213), white, rgba(246, 247, 183, 0.856));
   margin-bottom: 0;
 }
 </style>

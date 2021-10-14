@@ -44,6 +44,7 @@ export default {
   props: ['flashcardCollection']
 }
 </script>
+
 <style scoped>
 h3 {
   font: bold;

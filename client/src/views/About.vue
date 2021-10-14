@@ -1,16 +1,31 @@
 <template>
   <div>
     <div><h3>Introduction to the team.</h3></div>
-    <div>
-      <p>
-        'Ninja Ipsum' is a sexy 'Lorem Ipsum' meant exclusively for Ninjas. It's
-        the stealthiest Dummy Text in the world. In publishing and graphic
-        design, lorem ipsum is a filler text / dummy text commonly used to
-        demonstrate the graphic elements of a document or visual presentation.
-        Replacing meaningful content that could be distracting with placeholder
-        text may allow viewers to focus on graphic aspects such as font,
-        typography, and page layout.
-      </p>
+    <div id="about">
+      <ul>
+        <li class="bullet-point">The Idea</li>
+        <p class="bullet-text">
+          The idea came after several attempts to find the perfect project idea to which the technologies, methods and knowledge aquired in the course DIT344
+        </p>
+        <li class="bullet-point">The project</li>
+        <p class="bullet-text">
+          The project was processed in this order:
+            <ol>
+              <li>Modeling the ER diagram</li>
+              <li>Create a Backend</li>
+              <li>Create a Frontend</li>
+            </ol>
+        </p>
+        <li class="bullet-point">The team</li>
+          <p class="bullet-text">Our super team worked on the project as follows:</p>
+            <li>Modeling the ER diagram</li>
+            <li>
+              <dt>Create a Backend</dt>
+              <dd>Where all the magical stuff happen</dd>
+
+            </li>
+            <li>Create a Frontend</li>
+      </ul>
     </div>
   </div>
 </template>

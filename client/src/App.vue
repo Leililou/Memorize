@@ -12,9 +12,24 @@
   <a href="/Goals">Goals</a>
   <a href="/About">About</a>
   <a href="/UsersSignUp">Users</a>
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
+
+  <b-navbar-toggle target="navbar-toggle-collapse">
+      <template #default="{ expanded }">
+        <b-icon v-if="expanded" icon="chevron-bar-up"></b-icon>
+        <b-icon v-else icon="chevron-bar-down"></b-icon>
+      </template>
+    </b-navbar-toggle>
+
+    <b-collapse id="navbar-toggle-collapse" is-nav >
+      <b-navbar-nav class="ml-auto">
+        <b-nav-item href="/">Home</b-nav-item>
+        <b-nav-item href="/flashcardCollections">Flashcards Collections</b-nav-item>
+        <b-nav-item href="/Goals">Goals</b-nav-item>
+        <b-nav-item href="/About">About</b-nav-item>
+        <b-nav-item href="/UsersSignUp">Users</b-nav-item>
+      </b-navbar-nav>
+    </b-collapse>
+
 </div>
 
   <div id="nav">
@@ -45,7 +60,8 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   background-color: #cccccc;
-  background-image: linear-gradient(pink, yellow);
+  background-image: linear-gradient(rgb(245, 207, 213), white, rgba(246, 247, 183, 0.856));
+  margin-bottom: 0;
 }
   #grad2 {
   background-color: #cccccc;
