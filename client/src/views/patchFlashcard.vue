@@ -55,7 +55,7 @@ export default {
         (result) => {
           console.log(this.posts)
           window.location.href =
-            '/flashcardCollections/' + this.collectionId + '/quiz'
+            '/flashcardCollection/' + this.collectionId + '/quiz'
         }
       )
     }
