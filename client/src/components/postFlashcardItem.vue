@@ -19,7 +19,7 @@
       />
       <br />
       <br />
-      <button type="submit">Submit</button>
+      <b-button size="sm" variant="success" type="submit">Submit</b-button>
     </form>
   </div>
 </template>
