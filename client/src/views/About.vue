@@ -3,11 +3,11 @@
     <div><h2>About us and the project</h2></div>
     <div id="about">
       <ul>
-        <li class="bullet-point p-3 mb-2 bg-info text-white">The Idea</li>
+        <h3 class="bullet-point p-3 mb-2 bg-info text-white">The Idea</h3>
         <p class="bullet-text">
-          The idea came after several attempts to find the perfect project idea to which the technologies, methods and knowledge aquired in the course DIT344
+          The idea came after several attempts to find the perfect project idea to which the technologies, methods and knowledge aquired in the course DIT344 could be implemented and used
         </p>
-        <li class="bullet-point p-3 mb-2 bg-secondary text-white">The project</li>
+        <h3 class="bullet-point p-3 mb-2 bg-secondary text-white">The project</h3>
         <p class="bullet-text">
           The project was processed by our team champions in this order:
             <ol>
@@ -22,13 +22,12 @@
               <dd class="font-weight-light">Where we see the magic</dd></li>
             </ol>
         </p>
-        <li class="bullet-point p-3 mb-2 bg-warning text-dark">The team</li>
+         <h3 class="bullet-point p-3 mb-2 bg-warning text-dark">The team</h3>
           <p class="bullet-text">Our super team worked on the project as follows:</p>
             <li>🤴 Albert</li>
             <li>👸 Leila</li>
             <li>🤴 Mattias</li>
       </ul>
-       <p class="test"> .</p>
     </div>
   </div>
 </template>

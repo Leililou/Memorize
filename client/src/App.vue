@@ -50,7 +50,7 @@
         <router-view />
       </div>
     </div>
-    <div class="fixed-bottom">
+    <div class="footer-bottom">
       <footer class="bg-light text-center text-lg-start">
         <!-- Copyright -->
         <div
