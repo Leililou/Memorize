@@ -80,9 +80,9 @@ export default {
         { value: 5, text: 'Rating 5' }
       ],
       status_options: [
-        { value: 1, text: 'Not yet started' },
-        { value: 2, text: 'Working on it!' },
-        { value: 3, text: 'Achieved!' }
+        { value: 'Not yet started', text: 'Not yet started' },
+        { value: 'Working on it!', text: 'Working on it!' },
+        { value: 'Achieved!', text: 'Achieved!' }
       ]
     }
   },
