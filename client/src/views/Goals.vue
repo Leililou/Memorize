@@ -56,7 +56,7 @@
 import { Api } from '@/Api'
 import PostGoalItem from '../components/postFormGoals.vue'
 import GoalItemCard from '../components/goalsItemCard.vue'
-import ErrorMsg from '../components/erroMsg.vue'
+import ErrorMsg from '../components/errorMsg.vue'
 
 export default {
   name: 'goal',

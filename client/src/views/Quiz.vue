@@ -50,7 +50,7 @@
 import { Api } from '@/Api'
 import FlashcardItem from '../components/flashcardItem.vue'
 import PostFlashcardItem from '../components/postFlashcardItem.vue'
-import ErrorMsg from '../components/erroMsg.vue'
+import ErrorMsg from '../components/errorMsg.vue'
 
 export default {
   name: 'flashcards',
