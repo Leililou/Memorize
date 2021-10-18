@@ -1,50 +1,59 @@
 <template>
-  <div>
-    <form @submit="postData">
-      <input
-        class="inputs"
+<div class="form-align">
+    <form @submit="postData" >
+      <div class="mb-3 col-md-3">
+        <label for="name">Name<tag class="star">*</tag></label>
+        <input
+        id="name"
+        class="inputs "
         required
         type="text"
         name="name"
         placeholder="Name"
         v-model="posts.name"
-      />
-      <br />
-      <br />
-      <input
-        class="inputs"
+        />
+      </div>
+
+      <div class="mb-3 col-md-3">
+        <label for="description">Description<tag class="star">*</tag></label>
+        <textarea class="form-control inputs" rows="3"
+        id="description"
         required
         type="text"
         name="description"
-        placeholder="Description"
-        v-model="posts.description"
-      />
-      <br />
-      <br />
-      <input
-        class="inputs"
-        required
-        type="text"
-        name="status"
-        placeholder="Status"
-        v-model="posts.status"
-      />
-      <br />
-      <br />
-      <div>
+        placeholder="Description..."
+        v-model="posts.description">
+        </textarea>
+      </div>
+
+      <div class="mb-3 col-md-3">
+        <label for="status">Status<tag class="star">*</tag></label>
         <b-form-select
-          required
-          v-model="posts.importanceRating"
-          :options="options"
+          id="status"
           class="inputs"
-        >
+          required
+          type="text"
+          name="status"
+          placeholder="Status"
+          :options="status_options"
+          v-model="posts.status"
+        />
+        </div>
+      <div class="mb-3 col-md-3">
+        <label for="rating">Rating<tag class="star">*</tag></label>
+          <b-form-select
+            id="rating"
+            required
+            placeholder="Rating"
+            v-model="posts.importanceRating"
+            :options="rating_options"
+            class="inputs"
+          >
         </b-form-select>
       </div>
-      <br />
-      <br />
-      <b-button variant="primary" type="submit">Submit</b-button>
+      <b-button variant="success" type="submit">Submit</b-button>
     </form>
-  </div>
+</div>
 </template>
 <script>
 import { Api } from '@/Api'
@@ -59,12 +68,17 @@ export default {
         importanceRating: null,
         status: null
       },
-      options: [
+      rating_options: [
         { value: 1, text: 'Rating 1' },
         { value: 2, text: 'Rating 2' },
         { value: 3, text: 'Rating 3' },
         { value: 4, text: 'Rating 4' },
         { value: 5, text: 'Rating 5' }
+      ],
+      status_options: [
+        { value: 1, text: 'Not yet started' },
+        { value: 2, text: 'In progress' },
+        { value: 3, text: 'Achieved' }
       ]
     }
   },
@@ -93,6 +107,16 @@ export default {
 <style scoped>
 .inputs {
   width: 250px;
+  align-self: center;
+}
+
+.form-align{
+display: inline-block;
+text-align: left;
+}
+
+.star{
+  color: red;
 }
 </style>
 

@@ -2,15 +2,17 @@
   <div>
     <div></div>
     <form @submit="postData">
+      <div class="mb-3">
       <input
         required
         type="text"
+         rows="3"
         name="name"
         placeholder="Name"
         v-model="posts.name"
       />
-      <br />
-      <br />
+      </div>
+      <div class="mb-3">
       <input
         required
         type="text"
@@ -18,8 +20,7 @@
         placeholder="Description"
         v-model="posts.desc"
       />
-      <br />
-      <br />
+      </div>
       <b-button size="sm" variant="success" type="submit">Submit</b-button>
     </form>
   </div>
