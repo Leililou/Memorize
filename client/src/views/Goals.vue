@@ -19,7 +19,7 @@
       </b-modal>
     </div>
 
-    <error-message v-bind:message="message"></error-message>
+    <user-message v-bind:message="message" v-bind:title="title"></user-message>
 
     <div style="margin-bottom: 15px">
       <!-- modal goes here -->
@@ -56,14 +56,14 @@
 import { Api } from '@/Api'
 import PostGoalItem from '../components/postFormGoals.vue'
 import GoalItemCard from '../components/goalsItemCard.vue'
-import ErrorMsg from '../components/errorMsg.vue'
+import UserMsg from '../components/userMsg.vue'
 
 export default {
   name: 'goal',
   components: {
     'post-goal-item': PostGoalItem,
     'goal-item-card': GoalItemCard,
-    'error-message': ErrorMsg
+    'user-message': UserMsg
   },
   mounted() {
     console.log('Page has been loaded!')
@@ -87,7 +87,7 @@ export default {
   },
   methods: {
     showErrorModal() {
-      this.$root.$emit('bv::show::modal', 'error-modal', '#btnShow')
+      this.$root.$emit('bv::show::modal', 'user-message-modal', '#btnShow')
     },
     showModal() {
       this.$root.$emit('bv::show::modal', 'modal-1', '#btnShow')
@@ -100,6 +100,7 @@ export default {
       Api.delete(`/goals/${_id}`).then(() => {
         const index = this.goals.findIndex((goal) => goal._id === _id)
         this.goals.splice(index, 1)
+        window.location.href = '/goals'
       })
     },
     deleteAllGoals() {
@@ -110,7 +111,8 @@ export default {
   data() {
     return {
       goals: [],
-      message: 'No goal found! Please make a new goal.'
+      message: 'No goal found! Please make a new goal.',
+      title: "Sorry. There's nothing here..."
     }
   }
 }

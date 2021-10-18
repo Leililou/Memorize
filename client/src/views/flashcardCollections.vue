@@ -24,7 +24,7 @@
         <!-- modal2-->
       </div>
 
-      <error-message v-bind:message="message"></error-message>
+      <user-message v-bind:message="message" v-bind:title="title"></user-message>
 
       <div>
         <div class="row">
@@ -51,14 +51,14 @@
 import { Api } from '@/Api'
 import FlashcardCollectionItem from '../components/flashcardCollectionItem.vue'
 import PostFlashcardCollection from '../components/postFormCollection.vue'
-import ErrorMsg from '../components/errorMsg.vue'
+import UserMsg from '../components/userMsg.vue'
 
 export default {
   name: 'flashcardCollections',
   components: {
     'flashcardCollection-item': FlashcardCollectionItem,
     'Post-FlashCard-Collection': PostFlashcardCollection,
-    'error-message': ErrorMsg
+    'user-message': UserMsg
   },
 
   mounted() {
@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     showErrorModal() {
-      this.$root.$emit('bv::show::modal', 'error-modal', '#btnShow')
+      this.$root.$emit('bv::show::modal', 'user-message-modal', '#btnShow')
     },
     deleteFlashcardCollection(_id) {
       console.log(`Deleted collection with id ${_id}`)
@@ -103,7 +103,8 @@ export default {
   data() {
     return {
       flashcardCollections: [],
-      message: 'No collection found! Please make a new collection.'
+      message: 'No collection found! Please make a new collection.',
+      title: "Sorry. There's nothing here..."
     }
   }
 }

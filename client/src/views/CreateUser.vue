@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit="postData" method="post">
+    <form>
       <input
         required
         type="text"
@@ -19,34 +19,53 @@
       />
       <br />
       <br />
-      <button type="submit">Create account</button>
+      <button v-on:click="postData" type="button">Create account</button>
       <br />
       <router-link to="/UsersLogin">Take me to sign in</router-link>
     </form>
+    <user-message v-bind:message="message" v-bind:title="title"></user-message>
   </div>
 </template>
 <script>
 import { Api } from '@/Api'
+import UserMsg from '../components/userMsg.vue'
 
 export default {
-  name: 'PostFormCollection',
+  name: 'CreateUser',
+  components: {
+    'user-message': UserMsg
+  },
   data() {
     return {
       posts: {
         username: null,
         password: null
-      }
+      },
+      message: 'You have created an account. Please proceed to the login page.',
+      title: 'Account created successfully!'
     }
   },
   methods: {
+    showUserMessage() {
+      this.$root.$emit('bv::show::modal', 'user-message-modal', '#btnShow')
+    },
     postData() {
       Api.post('/users', this.posts)
         .then(() => {
           console.log(this.posts)
-          window.location.reload()
+          this.showUserMessage()
         })
-      // To do:
-      // Insert pop up clarification and instructions for user.
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response.data)
+            console.log(error.response.status)
+            console.log(error.response.headers)
+          } else if (error.request) {
+            console.log(error.request)
+          } else {
+            console.log('Error', error.message)
+          }
+        })
     }
   }
 }

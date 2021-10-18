@@ -1,8 +1,8 @@
 <template>
-      <div id="error-message">
-      <b-modal id="error-modal">
+      <div id="user-message">
+      <b-modal id="user-message-modal">
         <template #modal-header>
-          <h4 id="form-heading">Sorry</h4>
+          <h4 id="form-heading">{{title}}</h4>
         </template>
 
         <template #default>
@@ -18,8 +18,8 @@
 </template>
 <script>
 export default {
-  name: 'error-message',
-  props: ['message']
+  name: 'user-message',
+  props: ['message', 'title']
 // No goals found! Please make a new goal
 }
 </script>

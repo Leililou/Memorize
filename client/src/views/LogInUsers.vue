@@ -2,7 +2,7 @@
   <div>
     <h1>Login</h1>
     <div>
-      <form @submit="method" method="getUsers">
+      <form @submit="login">
         <input
           required
           type="text"
@@ -20,16 +20,21 @@
         />
         <br />
         <br />
-        <button type="submit">Sign In</button>
+        <button v-on:click="login" type="button">Sign In</button>
       </form>
     </div>
+    <user-message v-bind:message="message" v-bind:title="title"></user-message>
   </div>
 </template>
 <script>
 import { Api } from '@/Api'
+import UserMsg from '../components/userMsg.vue'
 
 export default {
   name: 'Login',
+  components: {
+    'user-message': UserMsg
+  },
   data() {
     return {
       users: {
@@ -38,11 +43,19 @@ export default {
       gets: {
         username: null,
         password: null
-      }
+      },
+      message: 'Username and password does not match! Please check your login information.',
+      title: 'Incorrect login information'
     }
   },
   methods: {
-    method() {
+    showErrorModal() {
+      this.$root.$emit('bv::show::modal', 'user-message-modal', '#btnShow')
+    },
+    hideModal() {
+      this.$root.$emit('bv::hide::modal', 'modal-1', '#btnShow')
+    },
+    login() {
       Api.get('/users/' + this.gets.username + '/' + this.gets.password)
         .then((response) => {
           console.log(response)
@@ -54,8 +67,9 @@ export default {
           )
           window.location.href = '/users/' + this.users._id
         })
-        .catch(function (error) {
+        .catch((error) => {
           if (error.response) {
+            this.showErrorModal()
             console.log(error.response.data)
             console.log(error.response.status)
             console.log(error.response.headers)

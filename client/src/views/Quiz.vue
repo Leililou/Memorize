@@ -24,7 +24,7 @@
       <!-- modal goes above -->
     </div>
 
-    <error-message v-bind:message="message"></error-message>
+    <user-message v-bind:message="message" v-bind:title="title"></user-message>
 
     <h3>The cards</h3>
     <b-container>
@@ -50,14 +50,14 @@
 import { Api } from '@/Api'
 import FlashcardItem from '../components/flashcardItem.vue'
 import PostFlashcardItem from '../components/postFlashcardItem.vue'
-import ErrorMsg from '../components/errorMsg.vue'
+import UserMsg from '../components/userMsg.vue'
 
 export default {
   name: 'flashcards',
   components: {
     'flashcard-item': FlashcardItem,
     'post-flashcard-item': PostFlashcardItem,
-    'error-message': ErrorMsg
+    'user-message': UserMsg
   },
   mounted() {
     console.log('Page is loaded!')
@@ -85,7 +85,7 @@ export default {
   },
   methods: {
     showErrorModal() {
-      this.$root.$emit('bv::show::modal', 'error-modal', '#btnShow')
+      this.$root.$emit('bv::show::modal', 'user-message-modal', '#btnShow')
     },
     deleteFlashcard(_id) {
       console.log(`Deleted flashcard with id ${_id}`)
@@ -101,7 +101,8 @@ export default {
     return {
       collectionId: 0,
       flashcards: [],
-      message: 'No flashcard found! Please make a new flashcard.'
+      message: 'No flashcard found! Please make a new flashcard.',
+      title: "Sorry. There's nothing here..."
     }
   }
 }
