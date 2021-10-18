@@ -2,7 +2,7 @@
   <div id="grad2">
     <div id="app">
       <div class="topnav" id="myTopnav">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
           <img
             src="/favicon.ico"
             width="30"
@@ -112,7 +112,7 @@ body {
 
 .topnav a:hover {
   background-color: rgba(221, 221, 221, 0);
-  color: rgb(76, 139, 245);
+  color: rgb(250, 222, 170);
 }
 
 .topnav a.active {

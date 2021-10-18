@@ -2,22 +2,23 @@
   <div>
     <div></div>
     <form>
-      <div class="mb-3">
-      <input
+      <div class="mb-3 col-md-2">
+        <label for="name">Name<tag class="star">*</tag></label>
+      <input id="name"
         required
         type="text"
          rows="3"
         name="name"
-        placeholder="Name"
         v-model="posts.name"
       />
       </div>
-      <div class="mb-3">
+      <div class="mb-3 col-md-2">
+      <label for="desc">Description<tag class="star">*</tag></label>
       <input
+      id="desc"
         required
         type="text"
         name="desc"
-        placeholder="Description"
         v-model="posts.desc"
       />
       </div>
@@ -63,5 +64,8 @@ export default {
 <style>
 form {
   text-align: center;
+}
+.star{
+  color: red;
 }
 </style>

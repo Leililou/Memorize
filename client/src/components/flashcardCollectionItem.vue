@@ -27,6 +27,7 @@
               v-bind:href="
                 '/flashcardCollection/edit/' + flashcardCollection._id
               "
+              variant="warning"
               class="btn btn-primary mr-1"
               role="button"
               >Edit</b-button

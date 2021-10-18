@@ -12,12 +12,11 @@
           v-on:click="isDisplay = !isDisplay"
           class="btn btn-outline-success mr-1"
           role="button"
-          >Toggle Answer</a
-        >
+          >Toggle Answer</a>
         <div>
           <div class="card-footer bg-white border-success">
             <b-button
-              variant="primary"
+            class="btn btn-warning mr-1"
               v-bind:href="
                 '/flashcardCollections/' +
                 collectionId +
@@ -26,11 +25,11 @@
               "
               >Edit</b-button
             >
-            |
             <b-button
+            class="btn btn-danger mr-1"
               variant="danger"
               v-on:click="$emit('del-flashcard', flashcard._id)"
-              >X</b-button
+              >Delete</b-button
             >
           </div>
         </div>
