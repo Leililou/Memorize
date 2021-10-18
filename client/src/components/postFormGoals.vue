@@ -1,7 +1,8 @@
 <template>
-<div class="form-align">
+<div class="form-align ">
     <form @submit="postData" >
-      <div class="mb-3 col-md-3">
+
+      <div class="mb-3 col-md-2">
         <label for="name">Name<tag class="star">*</tag></label>
         <input
         id="name"
@@ -26,7 +27,7 @@
         </textarea>
       </div>
 
-      <div class="mb-3 col-md-3">
+      <div class="mb-3 col-md-2">
         <label for="status">Status<tag class="star">*</tag></label>
         <b-form-select
           id="status"
@@ -39,8 +40,9 @@
           v-model="posts.status"
         />
         </div>
-      <div class="mb-3 col-md-3">
-        <label for="rating">Rating<tag class="star">*</tag></label>
+
+      <div class="mb-3 col-md-2">
+        <label for="rating">Importance<tag class="star">*</tag></label>
           <b-form-select
             id="rating"
             required
@@ -51,7 +53,9 @@
           >
         </b-form-select>
       </div>
+       <p class="star">(*): required field</p>
       <b-button variant="success" type="submit">Submit</b-button>
+
     </form>
 </div>
 </template>
@@ -77,8 +81,8 @@ export default {
       ],
       status_options: [
         { value: 1, text: 'Not yet started' },
-        { value: 2, text: 'In progress' },
-        { value: 3, text: 'Achieved' }
+        { value: 2, text: 'Working on it!' },
+        { value: 3, text: 'Achieved!' }
       ]
     }
   },
@@ -107,7 +111,6 @@ export default {
 <style scoped>
 .inputs {
   width: 250px;
-  align-self: center;
 }
 
 .form-align{
