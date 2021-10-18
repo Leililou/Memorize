@@ -1,6 +1,6 @@
 <template>
 <div class="form-align ">
-    <form @submit="postData" >
+    <form>
 
       <div class="mb-3 col-md-2">
         <label for="name">Name<tag class="star">*</tag></label>
@@ -54,7 +54,7 @@
         </b-form-select>
       </div>
        <p class="star">(*): required field</p>
-      <b-button variant="success" type="submit">Submit</b-button>
+      <b-button variant="success" v-on:click="postData">Submit</b-button>
 
     </form>
 </div>
@@ -91,7 +91,7 @@ export default {
       Api.post('/goals', this.posts)
         .then((result) => {
           console.log(this.posts)
-          window.location.reload()
+          window.location.href = '/goals'
         })
         .catch(function (error) {
           if (error.response) {
