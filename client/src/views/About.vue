@@ -23,7 +23,7 @@
             </ol>
         </p>
          <h3 class="bullet-point p-3 mb-2 bg-warning text-dark">The team</h3>
-          <p class="bullet-text">Our super team worked on the project as follows:</p>
+          <p class="bullet-text">Team members:
             <li>🤴 Albert</li>
             <li>👸 Leila</li>
             <li>🤴 Mattias</li>

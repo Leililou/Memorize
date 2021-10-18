@@ -1,29 +1,33 @@
 <template>
+
   <div>
-    <b-card :title="goal.name" style="max-width: 20rem" class="mb-2">
+    <b-card :title="goal.name" class="mb-2 gold">
       <b-card-text>
-        <div class="card-footer bg-white border-primary">
-          <h6 class="description-header">Description</h6>
-          <p class="description">{{ goal.description }}</p>
-        </div>
-        <div>
-          <p>
-            Status: {{ goal.status }}
-            <br />
-            Importance Rating: {{ goal.importanceRating }}/5
-          </p>
+        <div class="card-footer border-success">
+             <p name="description" class=" desc card-text"
+        ><strong>Description: </strong>{{ goal.description }}</p>
+        <p class="card-text"><strong>Status: </strong><strong class="exp">{{ goal.status }}</strong></p>
+        <p class="card-text"><strong>Importance Rating: </strong>
+        <strong class="exp">{{ goal.importanceRating }} of 5</strong></p>
         </div>
       </b-card-text>
-      <div class="card-footer bg-white border-primary">
-        <b-button :href="'/goals/edit/' + goal._id" variant="primary"
-          >Edit</b-button
-        >
-        |
+      <div class="card-footer bg-white border-success">
         <b-button
-          variant="danger"
-          v-on:click="$emit('del-goal', goal._id)"
-          >X</b-button
-        >
+              class="btn btn-danger mr-1"
+              v-on:click="
+                $emit('del-goal', goal._id)
+              "
+              >Delete</b-button
+            >
+            <b-button
+              v-bind:href="
+              '/goals/edit/' + goal._id"
+              class="btn btn-primary mr-1"
+              variant="warning"
+              role="button"
+              >Edit</b-button
+            >
+
       </div>
     </b-card>
   </div>
@@ -37,6 +41,7 @@ export default {
 </script>
 
 <style scoped>
+
 .description {
   text-transform: capitalize;
 }
@@ -46,4 +51,12 @@ export default {
 .description-header {
   text-decoration: underline;
 }
+.header{
+  text-decoration-color: gold;
+}
+.card-text {
+  text-align: left;
+  color: rgba(133, 133, 133, 0.884);
+}
+
 </style>

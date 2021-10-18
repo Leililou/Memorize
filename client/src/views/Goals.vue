@@ -14,6 +14,7 @@
         @ok="deleteAllGoals"
         @cancel="hideModal"
       >
+
         <div class="d-block">Please press Confirm to delete all goals.</div>
       </b-modal>
     </div>
