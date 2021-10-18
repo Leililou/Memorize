@@ -1,8 +1,12 @@
 <template>
   <div id="app-6" :key="(goalId = $route.params._id)">
-    <div>
+    <h2>Edit Goal</h2>
+    <div class="allForm">
       <form @submit="patchData" method="patch">
+        <div class="mb-3 col-md-2">
+        <label for="update-name">Name<tag class="star">*</tag></label>
         <input
+        id="update-name"
           class="inputs"
           required
           type="text"
@@ -10,9 +14,12 @@
           :placeholder="goal.name"
           v-model="patches.name"
         />
-        <br />
-        <br />
+        </div>
+
+        <div class="mb-3 col-md-2">
+        <label for="update-desc">Description<tag class="star">*</tag></label>
         <input
+        id="update-desc"
           class="inputs"
           required
           type="text"
@@ -20,9 +27,12 @@
           :placeholder="goal.description"
           v-model="patches.description"
         />
-        <br />
-        <br />
+        </div>
+
+        <div class="mb-3 col-md-2">
+        <label for="update-status">Status<tag class="star">*</tag></label>
         <input
+        id="update-status"
           class="inputs"
           required
           type="text"
@@ -30,10 +40,12 @@
           :placeholder="goal.status"
           v-model="patches.status"
         />
-        <br />
-        <br />
-        <div>
+        </div>
+
+        <div class="mb-3 col-md-2">
+        <label for="update-importance">Importance<tag class="star">*</tag></label>
           <b-form-select
+          id="update-importance"
             required
             v-model="patches.importanceRating"
             :options="options"
@@ -41,9 +53,9 @@
           >
           </b-form-select>
         </div>
-        <br />
-        <br />
+<div>
         <b-button v-on:click="checkInputFields">Update Goal</b-button>
+</div>
       </form>
     </div>
   </div>
@@ -137,5 +149,17 @@ export default {
 <style scoped>
 .inputs {
   width: 250px;
+}
+div.form
+{
+    display: block;
+    text-align: center;
+}
+form
+{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
 }
 </style>

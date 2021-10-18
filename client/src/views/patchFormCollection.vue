@@ -15,7 +15,7 @@
           required
           type="text"
           name="desc"
-          placeholder="Description"
+          :placeholder="Description"
           v-model="patches.desc"
         />
         <br />
