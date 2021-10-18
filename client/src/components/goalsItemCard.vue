@@ -8,7 +8,7 @@
         ><strong>Description: </strong>{{ goal.description }}</p>
         <p class="card-text"><strong>Status: </strong><strong class="exp">{{ goal.status }}</strong></p>
         <p class="card-text"><strong>Importance Rating: </strong>
-        <strong class="exp">{{ goal.importanceRating }} of 5</strong></p>
+        <strong class="exp">{{ goal.importanceRating }}</strong><strong> of 5</strong></p>
         </div>
       </b-card-text>
       <div class="card-footer bg-white border-success">
@@ -41,7 +41,9 @@ export default {
 </script>
 
 <style scoped>
-
+.exp{
+  color: rgb(224, 39, 131);
+}
 .description {
   text-transform: capitalize;
 }

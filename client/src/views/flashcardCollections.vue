@@ -4,7 +4,7 @@
     <div class="text-align-center">
       <div>
         <!-- modal2-->
-        <b-button class="new-collection" varaiant="sucess" @click="$bvModal.show('modal-scoped')"
+        <b-button class="new-collection" variant="sucess" @click="$bvModal.show('modal-scoped')"
           >+ New collection</b-button
         >
         <b-modal id="modal-scoped">
