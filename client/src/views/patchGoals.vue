@@ -1,6 +1,7 @@
 <template>
   <div id="app-6" :key="(goalId = $route.params._id)">
-    <div>
+    <h2>Edit Goal</h2>
+    <div class="allForm">
       <form @submit="patchData" method="patch">
         <div class="mb-3 col-md-2">
         <label for="update-name">Name<tag class="star">*</tag></label>
@@ -52,8 +53,9 @@
           >
           </b-form-select>
         </div>
-
+<div>
         <b-button v-on:click="checkInputFields">Update Goal</b-button>
+</div>
       </form>
     </div>
   </div>
@@ -148,7 +150,16 @@ export default {
 .inputs {
   width: 250px;
 }
-form{
-  text-align: center;
+div.form
+{
+    display: block;
+    text-align: center;
+}
+form
+{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
 }
 </style>
