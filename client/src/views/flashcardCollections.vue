@@ -23,6 +23,9 @@
         </b-modal>
         <!-- modal2-->
       </div>
+
+      <error-message v-bind:message="message"></error-message>
+
       <div>
         <div class="row">
           <div
@@ -48,12 +51,14 @@
 import { Api } from '@/Api'
 import FlashcardCollectionItem from '../components/flashcardCollectionItem.vue'
 import PostFlashcardCollection from '../components/postFormCollection.vue'
+import ErrorMsg from '../components/erroMsg.vue'
 
 export default {
   name: 'flashcardCollections',
   components: {
     'flashcardCollection-item': FlashcardCollectionItem,
-    'Post-FlashCard-Collection': PostFlashcardCollection
+    'Post-FlashCard-Collection': PostFlashcardCollection,
+    'error-message': ErrorMsg
   },
 
   mounted() {
@@ -68,8 +73,9 @@ export default {
           'Hi. This shows after each iteration of api.get(/api/flashcardCollections)'
         )
       })
-      .catch(function (error) {
+      .catch((error) => {
         if (error.response) {
+          this.showErrorModal()
           console.log(error.response.data)
           console.log(error.response.status)
           console.log(error.response.headers)
@@ -81,6 +87,9 @@ export default {
       })
   },
   methods: {
+    showErrorModal() {
+      this.$root.$emit('bv::show::modal', 'error-modal', '#btnShow')
+    },
     deleteFlashcardCollection(_id) {
       console.log(`Deleted collection with id ${_id}`)
       Api.delete(`/flashcardCollections/${_id}`).then(() => {
@@ -93,7 +102,8 @@ export default {
   },
   data() {
     return {
-      flashcardCollections: []
+      flashcardCollections: [],
+      message: 'No collection found! Please make a new collection.'
     }
   }
 }

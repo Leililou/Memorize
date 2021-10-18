@@ -23,6 +23,9 @@
       </b-modal>
       <!-- modal goes above -->
     </div>
+
+    <error-message v-bind:message="message"></error-message>
+
     <h3>The cards</h3>
     <b-container>
       <b-row>
@@ -47,12 +50,14 @@
 import { Api } from '@/Api'
 import FlashcardItem from '../components/flashcardItem.vue'
 import PostFlashcardItem from '../components/postFlashcardItem.vue'
+import ErrorMsg from '../components/erroMsg.vue'
 
 export default {
   name: 'flashcards',
   components: {
     'flashcard-item': FlashcardItem,
-    'post-flashcard-item': PostFlashcardItem
+    'post-flashcard-item': PostFlashcardItem,
+    'error-message': ErrorMsg
   },
   mounted() {
     console.log('Page is loaded!')
@@ -60,20 +65,28 @@ export default {
       .then((response) => {
         console.log(response)
         this.flashcards = response.data.FlashcardCollection[0].flashcards
+        if (this.flashcards.length === 0) {
+          throw new Error('No flashcard found')
+        }
       })
-      .catch(function (error) {
+      .catch((error) => {
         if (error.response) {
+          this.showErrorModal()
           console.log(error.response.data)
           console.log(error.response.status)
           console.log(error.response.headers)
         } else if (error.request) {
           console.log(error.request)
         } else {
+          this.showErrorModal()
           console.log('Error', error.message)
         }
       })
   },
   methods: {
+    showErrorModal() {
+      this.$root.$emit('bv::show::modal', 'error-modal', '#btnShow')
+    },
     deleteFlashcard(_id) {
       console.log(`Deleted flashcard with id ${_id}`)
       Api.delete(`/flashcards/${_id}`).then(() => {
@@ -87,7 +100,8 @@ export default {
   data() {
     return {
       collectionId: 0,
-      flashcards: []
+      flashcards: [],
+      message: 'No flashcard found! Please make a new flashcard.'
     }
   }
 }

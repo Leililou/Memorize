@@ -17,6 +17,9 @@
         <div class="d-block">Please press Confirm to delete all goals.</div>
       </b-modal>
     </div>
+
+    <error-message v-bind:message="message"></error-message>
+
     <div style="margin-bottom: 15px">
       <!-- modal goes here -->
       <b-button class="new-goal" variant="success" @click="$bvModal.show('modal-scoped')"
@@ -52,12 +55,14 @@
 import { Api } from '@/Api'
 import PostGoalItem from '../components/postFormGoals.vue'
 import GoalItemCard from '../components/goalsItemCard.vue'
+import ErrorMsg from '../components/erroMsg.vue'
 
 export default {
   name: 'goal',
   components: {
     'post-goal-item': PostGoalItem,
-    'goal-item-card': GoalItemCard
+    'goal-item-card': GoalItemCard,
+    'error-message': ErrorMsg
   },
   mounted() {
     console.log('Page has been loaded!')
@@ -66,8 +71,9 @@ export default {
         console.log(response)
         this.goals = response.data.Goals
       })
-      .catch(function (error) {
+      .catch((error) => {
         if (error.response) {
+          this.showErrorModal()
           console.log(error.response.data)
           console.log(error.response.status)
           console.log(error.response.headers)
@@ -79,6 +85,9 @@ export default {
       })
   },
   methods: {
+    showErrorModal() {
+      this.$root.$emit('bv::show::modal', 'error-modal', '#btnShow')
+    },
     showModal() {
       this.$root.$emit('bv::show::modal', 'modal-1', '#btnShow')
     },
@@ -99,7 +108,8 @@ export default {
   },
   data() {
     return {
-      goals: []
+      goals: [],
+      message: 'No goal found! Please make a new goal.'
     }
   }
 }

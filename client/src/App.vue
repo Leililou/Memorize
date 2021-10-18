@@ -20,7 +20,7 @@
         <a href="/Goals">Goals</a>
         <a href="/About">About</a>
         <a href="/UsersSignUp">Users</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <a href="javascript:void(0);" class="icon">
           <b-navbar toggleable type="dark">
             <b-navbar-brand href="#"></b-navbar-brand>
 
@@ -58,7 +58,7 @@
           style="background-color: rgba(0, 0, 0, 0.2)"
         >
           © 2021 Copyright:
-          <a class="text-dark"><strong> M E M O R I S E</strong></a>
+          <a class="text-dark"><strong> M E M O R I Z E</strong></a>
         </div>
         <!-- Copyright -->
       </footer>

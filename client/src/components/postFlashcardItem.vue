@@ -1,6 +1,6 @@
 <template>
   <div :key="(collectionId = $route.params._id)">
-    <form @submit="postData">
+    <form>
       <input
         required
         type="text"
@@ -19,7 +19,7 @@
       />
       <br />
       <br />
-      <b-button size="sm" variant="success" type="submit">Submit</b-button>
+      <b-button size="sm" variant="success" v-on:click="postData">Submit</b-button>
     </form>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div></div>
-    <form @submit="postData">
+    <form>
       <div class="mb-3">
       <input
         required
@@ -21,7 +21,7 @@
         v-model="posts.desc"
       />
       </div>
-      <b-button size="sm" variant="success" type="submit">Submit</b-button>
+      <b-button size="sm" variant="success" v-on:click="postData">Submit</b-button>
     </form>
   </div>
 </template>
