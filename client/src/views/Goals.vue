@@ -2,7 +2,7 @@
   <div>
     <h1>Goals</h1>
     <div style="margin-bottom: 10px">
-    <div>
+      <div>
         <b-button @click="showModal" ref="btnShow" variant="outline-danger"
           >Delete All Goals</b-button
         >
@@ -14,7 +14,6 @@
         @ok="deleteAllGoals"
         @cancel="hideModal"
       >
-
         <div class="d-block">Please press Confirm to delete all goals.</div>
       </b-modal>
     </div>
@@ -23,7 +22,10 @@
 
     <div style="margin-bottom: 15px">
       <!-- modal goes here -->
-      <b-button class="new-goal" variant="success" @click="$bvModal.show('modal-scoped')"
+      <b-button
+        class="new-goal"
+        variant="success"
+        @click="$bvModal.show('modal-scoped')"
         >+ New Goal</b-button
       >
 

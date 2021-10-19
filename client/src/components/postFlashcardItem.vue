@@ -1,6 +1,6 @@
 <template>
   <div :key="(collectionId = $route.params._id)">
-    <form>
+    <form @submit="postData">
       <input
         required
         type="text"
@@ -19,7 +19,7 @@
       />
       <br />
       <br />
-      <b-button size="sm" variant="success" v-on:click="postData">Submit</b-button>
+      <b-button size="sm" variant="success" type="submit">Submit</b-button>
     </form>
   </div>
 </template>
@@ -43,7 +43,7 @@ export default {
         '/flashcardCollections/' + this.collectionId + '/flashcards',
         this.posts
       )
-        .then((result) => {
+        .then(() => {
           console.log(this.posts)
           window.location.reload()
         })

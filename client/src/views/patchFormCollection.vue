@@ -1,26 +1,24 @@
 <template>
   <div id="app-6" :key="(collectionId = $route.params._id)">
     <div>
-      <form @submit="patchData" method="patch">
+      <form @submit="patchData">
         <input
-          required
           type="text"
           name="name"
-          placeholder="Name"
+          :placeholder="flashcardCollection.name"
           v-model="patches.name"
         />
         <br />
         <br />
         <input
-          required
           type="text"
           name="desc"
-          :placeholder="Description"
+          :placeholder="flashcardCollection.desc"
           v-model="patches.desc"
         />
         <br />
         <br />
-        <b-button v-on:click="patchData">Update Collection</b-button>
+        <b-button type="submit">Update Collection</b-button>
       </form>
     </div>
   </div>
@@ -34,10 +32,10 @@ export default {
   mounted() {
     console.log('Page is loaded!')
     Api.get('/flashcardCollections/' + this.collectionId)
-      .then(() => {
-        console.log(
-          'Hi. This shows after each iteration of api.get(/api/flashcardCollections)'
-        )
+      .then((response) => {
+        console.log(response)
+        this.flashcardCollection.name = response.data.name
+        this.flashcardCollection.desc = response.data.desc
       })
       .catch(function (error) {
         if (error.response) {

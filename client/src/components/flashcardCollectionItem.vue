@@ -16,14 +16,7 @@
         >
         <div>
           <div class="card-footer bg-white border-success">
-            <b-button
-              class="btn btn-danger mr-1"
-              v-on:click="
-                $emit('del-flashcardCollection', flashcardCollection._id)
-              "
-              >Delete</b-button
-            >
-            <b-modal id="modal-update-flashCard">
+            <!--b-modal id="modal-update-flashCard">
           <template #modal-header>
             <h4>Edit flashcard</h4>
           </template>
@@ -35,7 +28,7 @@
               Cancel
             </b-button>
           </template>
-        </b-modal>
+        </b-modal-->
             <b-button
               v-bind:href="
                 '/flashcardCollection/edit/' + flashcardCollection._id
@@ -45,7 +38,13 @@
               role="button"
               >Edit</b-button
             >
-
+            <b-button
+              class="btn btn-danger mr-1"
+              v-on:click="
+                $emit('del-flashcardCollection', flashcardCollection._id)
+              "
+              >Delete</b-button
+            >
           </div>
         </div>
       </div>

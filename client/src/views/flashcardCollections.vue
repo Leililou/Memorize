@@ -4,7 +4,10 @@
     <div class="text-align-center">
       <div>
         <!-- modal2-->
-        <b-button class="new-collection" variant="sucess" @click="$bvModal.show('modal-scoped')"
+        <b-button
+          class="new-collection"
+          variant="sucess"
+          @click="$bvModal.show('modal-scoped')"
           >+ New collection</b-button
         >
         <b-modal id="modal-scoped">
@@ -24,7 +27,10 @@
         <!-- modal2-->
       </div>
 
-      <user-message v-bind:message="message" v-bind:title="title"></user-message>
+      <user-message
+        v-bind:message="message"
+        v-bind:title="title"
+      ></user-message>
 
       <div>
         <div class="row">
@@ -92,12 +98,14 @@ export default {
     },
     deleteFlashcardCollection(_id) {
       console.log(`Deleted collection with id ${_id}`)
-      Api.delete(`/flashcardCollections/${_id}`).then(() => {
-        const index = this.flashcardCollections.findIndex(
-          (flashcardCollection) => flashcardCollection._id === _id
-        )
-        this.flashcardCollections.splice(index, 1)
-      })
+      Api.delete(`/flashcardCollections/${_id}`)
+        .then(() => {
+          const index = this.flashcardCollections.findIndex(
+            (flashcardCollection) => flashcardCollection._id === _id
+          )
+          this.flashcardCollections.splice(index, 1)
+        })
+        .then(() => (window.location.href = '/flashcardCollections'))
     }
   },
   data() {

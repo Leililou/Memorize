@@ -4,58 +4,52 @@
     <div class="allForm">
       <form @submit="patchData" method="patch">
         <div class="mb-3 col-md-2">
-        <label for="update-name">Name<tag class="star">*</tag></label>
-        <input
-        id="update-name"
-          class="inputs"
-          required
-          type="text"
-          name="name"
-          :placeholder="goal.name"
-          v-model="patches.name"
-        />
+          <label for="update-name">Name</label>
+          <input
+            id="update-name"
+            class="inputs"
+            type="text"
+            name="name"
+            :placeholder="goal.name"
+            v-model="patches.name"
+          />
         </div>
 
         <div class="mb-3 col-md-2">
-        <label for="update-desc">Description<tag class="star">*</tag></label>
-        <input
-        id="update-desc"
-          class="inputs"
-          required
-          type="text"
-          name="description"
-          :placeholder="goal.description"
-          v-model="patches.description"
-        />
+          <label for="update-desc">Description</label>
+          <input
+            id="update-desc"
+            class="inputs"
+            type="text"
+            name="description"
+            :placeholder="goal.description"
+            v-model="patches.description"
+          />
         </div>
 
         <div class="mb-3 col-md-2">
-        <label for="update-status">Status<tag class="star">*</tag></label>
-        <input
-        id="update-status"
-          class="inputs"
-          required
-          type="text"
-          name="status"
-          :placeholder="goal.status"
-          v-model="patches.status"
-        />
-        </div>
-
-        <div class="mb-3 col-md-2">
-        <label for="update-importance">Importance<tag class="star">*</tag></label>
+          <label for="status">Status</label>
           <b-form-select
-          id="update-importance"
-            required
+            id="status"
+            v-model="patches.status"
+            :options="status_options"
+            class="inputs"
+          />
+        </div>
+
+        <div class="mb-3 col-md-2">
+          <label for="update-importance">Importance</label>
+          <b-form-select
+            id="update-importance"
             v-model="patches.importanceRating"
             :options="options"
             class="inputs"
           >
           </b-form-select>
         </div>
-<div>
-        <b-button v-on:click="checkInputFields">Update Goal</b-button>
-</div>
+        <div id="update-button">
+          <b-button v-on:click="checkInputFields">Update Goal</b-button>
+        </div>
       </form>
     </div>
   </div>
@@ -140,6 +134,11 @@ export default {
         { value: 3, text: 'Rating 3' },
         { value: 4, text: 'Rating 4' },
         { value: 5, text: 'Rating 5' }
+      ],
+      status_options: [
+        { value: 'Not yet started', text: 'Not yet started' },
+        { value: 'Working on it!', text: 'Working on it!' },
+        { value: 'Achieved!', text: 'Achieved!' }
       ]
     }
   }
@@ -150,16 +149,14 @@ export default {
 .inputs {
   width: 250px;
 }
-div.form
-{
-    display: block;
-    text-align: center;
+div.form {
+  display: block;
+  text-align: center;
 }
-form
-{
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
+form {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
 }
 </style>

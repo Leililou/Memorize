@@ -1,34 +1,36 @@
 <template>
-<div class="form-align ">
-    <form>
-
+  <div class="form-align">
+    <form @submit="postData">
       <div class="mb-3 col-md-2">
-        <label for="name">Name<tag class="star">*</tag></label>
+        <label for="name">Name</label>
         <input
-        id="name"
-        class="inputs "
-        required
-        type="text"
-        name="name"
-        placeholder="Name"
-        v-model="posts.name"
+          id="name"
+          class="inputs"
+          required
+          type="text"
+          name="name"
+          placeholder="Name"
+          v-model="posts.name"
         />
       </div>
 
       <div class="mb-3 col-md-3">
-        <label for="description">Description<tag class="star">*</tag></label>
-        <textarea class="form-control inputs" rows="3"
-        id="description"
-        required
-        type="text"
-        name="description"
-        placeholder="Description..."
-        v-model="posts.description">
+        <label for="description">Description</label>
+        <textarea
+          class="form-control inputs"
+          rows="3"
+          id="description"
+          required
+          type="text"
+          name="description"
+          placeholder="Description..."
+          v-model="posts.description"
+        >
         </textarea>
       </div>
 
       <div class="mb-3 col-md-2">
-        <label for="status">Status<tag class="star">*</tag></label>
+        <label for="status">Status</label>
         <b-form-select
           id="status"
           class="inputs"
@@ -39,25 +41,23 @@
           :options="status_options"
           v-model="posts.status"
         />
-        </div>
+      </div>
 
       <div class="mb-3 col-md-2">
-        <label for="rating">Importance<tag class="star">*</tag></label>
-          <b-form-select
-            id="rating"
-            required
-            placeholder="Rating"
-            v-model="posts.importanceRating"
-            :options="rating_options"
-            class="inputs"
-          >
+        <label for="rating">Importance</label>
+        <b-form-select
+          id="rating"
+          required
+          placeholder="Rating"
+          v-model="posts.importanceRating"
+          :options="rating_options"
+          class="inputs"
+        >
         </b-form-select>
       </div>
-       <p class="star">(*): required field</p>
-      <b-button variant="success" v-on:click="postData">Submit</b-button>
-
+      <b-button variant="success" type="submit">Submit</b-button>
     </form>
-</div>
+  </div>
 </template>
 <script>
 import { Api } from '@/Api'
@@ -113,12 +113,12 @@ export default {
   width: 250px;
 }
 
-.form-align{
-display: inline-block;
-text-align: left;
+.form-align {
+  display: inline-block;
+  text-align: left;
 }
 
-.star{
+.star {
   color: red;
 }
 </style>

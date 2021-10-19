@@ -1,28 +1,29 @@
 <template>
   <div>
     <div></div>
-    <form>
+    <form @submit="postData">
       <div class="mb-3 col-md-2">
-        <label for="name">Name<tag class="star">*</tag></label>
-      <input id="name"
-        required
-        type="text"
-         rows="3"
-        name="name"
-        v-model="posts.name"
-      />
+        <label for="name">Name</label>
+        <input
+          id="name"
+          required
+          type="text"
+          rows="3"
+          name="name"
+          v-model="posts.name"
+        />
       </div>
       <div class="mb-3 col-md-2">
-      <label for="desc">Description<tag class="star">*</tag></label>
-      <input
-      id="desc"
-        required
-        type="text"
-        name="desc"
-        v-model="posts.desc"
-      />
+        <label for="desc">Description</label>
+        <input
+          id="desc"
+          required
+          type="text"
+          name="desc"
+          v-model="posts.desc"
+        />
       </div>
-      <b-button size="sm" variant="success" v-on:click="postData">Submit</b-button>
+      <b-button size="sm" variant="success" type="submit">Submit</b-button>
     </form>
   </div>
 </template>
@@ -65,7 +66,7 @@ export default {
 form {
   text-align: center;
 }
-.star{
+.star {
   color: red;
 }
 </style>
